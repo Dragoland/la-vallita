@@ -179,22 +179,3 @@ Este proyecto está bajo la licencia **MIT**. Consulta el archivo [LICENSE](LICE
 **Desarrollado con `</>` y amor por la tierra — Falcón, Placetas, Villa Clara, Cuba.**
 
 > *"De la tierra nace la vida, y la tecnología la hace florecer."*
-```
-
----
-
-## 📌 ¿Qué incluye este README?
-
-- ✅ **Descripción clara** del proyecto y su propósito.
-- ✅ **Badges** visuales con tecnologías y estado del despliegue.
-- ✅ **Estructura de carpetas** detallada.
-- ✅ **Instrucciones paso a paso** para desarrollo y despliegue.
-- ✅ **Sección de contribución** profesional.
-- ✅ **Enlaces de contacto** reales (WhatsApp de la familia y de BitCriollo).
-- ✅ **Diseño atractivo** con emojis y formato limpio para GitHub.
-
----
-
-¿Necesitas algún ajuste adicional? Puedo modificar el contenido, añadir más secciones o adaptar el tono si lo prefieres.
-  },
-])
