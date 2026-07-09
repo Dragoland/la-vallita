@@ -1,8 +1,3 @@
-¡Perfecto! Aquí tienes el `README.md` mejorado y completamente listo para tu repositorio de **La Vallita**. Incluye todos los detalles técnicos, instrucciones claras y un diseño profesional para que el proyecto luzca bien documentado.
-
----
-
-```markdown
 # 🌿 La Vallita — Finca Agroecológica
 
 > Sitio web oficial de la finca agroecológica familiar ubicada en Falcón, Placetas, Villa Clara, Cuba.
@@ -203,4 +198,3 @@ Este proyecto está bajo la licencia **MIT**. Consulta el archivo [LICENSE](LICE
 ¿Necesitas algún ajuste adicional? Puedo modificar el contenido, añadir más secciones o adaptar el tono si lo prefieres.
   },
 ])
-```
