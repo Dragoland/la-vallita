@@ -1,6 +1,7 @@
 # 🌿 La Vallita — Finca Agroecológica
 
 > Sitio web oficial de la finca agroecológica familiar ubicada en Falcón, Placetas, Villa Clara, Cuba.
+> Primera finca del reino vegetal cubano en alcanzar la **Quinta Corona de Excelencia Nacional**.
 
 [![Deployed on Cloudflare Pages](https://img.shields.io/badge/Cloudflare_Pages-deployed-orange?logo=cloudflare&logoColor=white)](https://la-vallita.pages.dev)
 ![React](https://img.shields.io/badge/React-19-blue?logo=react)
@@ -14,24 +15,47 @@
 
 **La Vallita** es el sitio web de una finca agroecológica fundada por **Emilio Chávez Estévez**, pionero reconocido como **Finca Agrovida**, que en su mejor momento albergó **171 especies** y **221 variedades** de plantas. Hoy, la familia Chávez trabaja para recuperar este patrimonio, combinando la tradición agrícola con la tecnología moderna.
 
-El sitio web tiene como objetivo:
+El sitio tiene como objetivo:
 
-- **Dar a conocer** la historia y misión de la finca.
-- **Mostrar la diversidad** de cultivos y productos disponibles.
-- **Facilitar el contacto** con la familia para consultas, compras o visitas.
+- **Vender plantas** directamente con precios visibles, carrito de compras y pedido por WhatsApp.
+- **Documentar la historia** del legado de Emilio Chávez Estévez y los reconocimientos nacionales.
+- **Educar** con consejos de vivero agrupados por mes, relevantes para la agricultura en Cuba.
+- **Facilitar el contacto** para consultas, compras o visitas a la finca.
 - **Integrarse** con el ecosistema digital de la familia, incluyendo el sitio de servicios informáticos **BitCriollo**.
 
 ---
 
 ## ✨ Características principales
 
-- 🏡 **Diseño orgánico y cálido**: paleta de colores verdes y tierra que refleja la naturaleza.
-- 🌱 **Historia de la finca**: narra el legado de Emilio Chávez y el trabajo de recuperación.
-- 📸 **Galería visual** (próximamente): imágenes de los cultivos, el entorno y la familia.
-- 📱 **Totalmente responsive**: se adapta a dispositivos móviles, tablets y escritorio.
-- 🌀 **Animaciones suaves**: con GSAP y Lenis para una experiencia de navegación fluida.
-- 💬 **Contacto directo por WhatsApp**: botón que abre conversación con la familia.
-- 🔗 **Integración con BitCriollo**: enlace al sitio del técnico informático de la familia.
+### 🛒 Carrito de compras + Calculadora
+- Precios en **CUP y MLC** visibles en cada producto.
+- **Carrito persistente** en `localStorage` con cantidades ajustables.
+- **Generador de pedido por WhatsApp** con mensaje pre-llenado y totales.
+- Estados de disponibilidad semánticos: `disponible`, `brotando`, `encargo`, `legacy`, `agotado`.
+
+### 📝 Contenido en Markdown
+- **Productos** como archivos `.md` en `src/content/productos/` con frontmatter.
+- **Consejos de vivero** como archivos `.md` en `src/content/consejos/` con frontmatter.
+- Parser de frontmatter **nativo** (sin dependencias extras), compatible con Vite `import.meta.glob`.
+- Fácil de editar: solo crea un `.md` y el sitio lo detecta automáticamente en build.
+
+### 📅 Consejos por mes
+- En la home se muestran **4 consejos del mes actual**.
+- Página `/consejos` con **filtro por los 12 meses** del año.
+- Priorización por nivel de importancia.
+
+### 🧭 Navegación
+- **Home** (`/`): Hero → Catálogo → Consejos → BitCriollo.
+- **Historia** (`/historia`): Historia + Legado + Reconocimientos + Medios.
+- **Contacto** (`/contacto`): Mapa + Cómo llegar + Horario + Contactos directos.
+- **Consejos** (`/consejos`): Todos los consejos filtrables por mes.
+- **Detalle de planta** (`/planta/:slug`): Información completa de cada producto.
+
+### 🎨 Diseño
+- Paleta de colores orgánica (tierra, hoja, trigo) coherente con la identidad de la finca.
+- Totalmente **responsive**.
+- Animaciones suaves con **GSAP** + scroll suave con **Lenis**.
+- Iconos con **Lucide React**.
 
 ---
 
@@ -44,10 +68,10 @@ El sitio web tiene como objetivo:
 | **Vite** | 7.2.4 | Bundler y servidor de desarrollo |
 | **Tailwind CSS** | 3.4.19 | Estilos y utilidades |
 | **shadcn/ui** | — | Componentes accesibles y reutilizables |
-| **GSAP** | 3.15.0 | Animaciones avanzadas |
+| **GSAP** | 3.15.0 | Animaciones avanzadas y ScrollTrigger |
 | **Lenis** | 1.3.25 | Scroll suave y performance |
 | **Lucide React** | 0.562.0 | Iconos vectoriales |
-| **React Hook Form** | 7.70.0 | Manejo de formularios |
+| **React Router** | 7.6.1 | Enrutamiento SPA |
 | **Cloudflare Pages** | — | Alojamiento y despliegue continuo |
 
 ---
@@ -56,35 +80,61 @@ El sitio web tiene como objetivo:
 
 ```
 la-vallita/
-├── public/                     # Archivos estáticos
-│   └── images/                 # Imágenes (cultivos, familia, logo)
+├── public/
+│   ├── images/                 # Imágenes (cultivos, familia, logo)
+│   └── videos/                 # Video de fondo del hero
 ├── src/
+│   ├── content/                # Archivos Markdown como fuente de datos
+│   │   ├── productos/          # .md de cada planta/frutal
+│   │   │   ├── guayaba.md
+│   │   │   ├── mango.md
+│   │   │   └── ...
+│   │   └── consejos/           # .md de consejos de vivero
+│   │       ├── preparar-suelo-lluvia.md
+│   │       └── ...
 │   ├── components/             # Componentes reutilizables
-│   ├── hooks/                  # Hooks personalizados (useScrollAnimations, etc.)
-│   ├── lib/                    # Utilidades (cn)
-│   ├── sections/               # Secciones de la página
+│   │   ├── ProductoCard.tsx
+│   │   ├── ConsejoCard.tsx
+│   │   ├── CarritoSidebar.tsx
+│   │   ├── SectionHeader.tsx
+│   │   └── ImagePlaceholder.tsx
+│   ├── hooks/                  # Hooks personalizados
+│   │   ├── useCarrito.ts       # Carrito + localStorage + WhatsApp
+│   │   ├── useProductos.ts     # Carga productos desde .md
+│   │   ├── useConsejos.ts      # Carga consejos desde .md
+│   │   ├── useScrollAnimation.ts
+│   │   └── useSmoothScroll.ts
+│   ├── lib/                    # Utilidades
+│   │   ├── utils.ts            # cn() para clases Tailwind
+│   │   └── parseMarkdown.ts    # Parser de frontmatter nativo
+│   ├── pages/                  # Vistas de rutas
+│   │   ├── Home.tsx
+│   │   ├── HistoriaPage.tsx
+│   │   ├── ContactoPage.tsx
+│   │   ├── ConsejosPage.tsx
+│   │   └── PlantaDetail.tsx
+│   ├── sections/               # Secciones de página
 │   │   ├── Hero.tsx
+│   │   ├── Catalogo.tsx
+│   │   ├── Consejos.tsx
 │   │   ├── Historia.tsx
-│   │   ├── Productos.tsx
-│   │   ├── Galeria.tsx
-│   │   ├── Contacto.tsx
+│   │   ├── Legado.tsx
+│   │   ├── Reconocimientos.tsx
+│   │   ├── Medios.tsx
+│   │   ├── BitCriollo.tsx
 │   │   └── Footer.tsx
-│   ├── App.tsx                 # Componente raíz
+│   ├── types/                  # Tipos TypeScript
+│   │   └── index.ts
+│   ├── App.tsx                 # Rutas principales
 │   ├── main.tsx                # Punto de entrada
-│   └── index.css               # Estilos globales
-├── index.html                  # HTML principal
-├── package.json                # Dependencias y scripts
-├── package-lock.json
-├── tsconfig.json               # Configuración TypeScript
-├── tsconfig.app.json
-├── tsconfig.node.json
-├── vite.config.ts              # Configuración de Vite
-├── tailwind.config.js          # Configuración de Tailwind
-├── postcss.config.js
-├── eslint.config.js
-├── components.json             # Configuración de shadcn/ui
-├── .npmrc                      # legacy-peer-deps
-├── .nvmrc                      # Node.js 20
+│   └── index.css               # Estilos globales + CSS variables
+├── index.html
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+├── tailwind.config.js
+├── .npmrc
+├── .nvmrc
 └── README.md
 ```
 
@@ -125,6 +175,52 @@ npm run dev
 
 ---
 
+## 📝 Cómo añadir un producto
+
+1. Crea un archivo `.md` en `src/content/productos/`:
+
+```markdown
+---
+nombre: Nombre común
+slug: nombre-comun
+cientifico: Nombre científico
+estado: disponible        # disponible | brotando | encargo | legacy | agotado
+precio_cup: 150
+precio_mlc: 1.50
+unidad: planta
+categoria: frutal          # frutal | hortaliza | cafe | ornamental | otro
+tags: [etiqueta1, etiqueta2]
+variedades: [Variedad A, Variedad B]
+---
+
+Descripción larga del producto. Puede incluir **markdown**.
+```
+
+2. Guarda y haz `git push`. Vite detectará el archivo automáticamente en el siguiente build.
+
+---
+
+## 📝 Cómo añadir un consejo de vivero
+
+1. Crea un archivo `.md` en `src/content/consejos/`:
+
+```markdown
+---
+titulo: Título del consejo
+slug: titulo-consejo
+mes: 5                      # 1-12
+resumen: Breve descripción para la tarjeta.
+tags: [suelo, riego]
+prioridad: 5                # 1-5, 5 es máxima prioridad
+---
+
+Contenido completo del consejo. Aparece en la página de detalle.
+```
+
+2. Guarda y haz `git push`.
+
+---
+
 ## 🌐 Despliegue en producción
 
 El sitio está configurado para desplegarse en **Cloudflare Pages** a través de GitHub.
@@ -146,7 +242,7 @@ El sitio está configurado para desplegarse en **Cloudflare Pages** a través de
 
 ### Dominio en producción
 
-El sitio estará disponible en: [https://la-vallita.pages.dev](https://la-vallita.pages.dev)
+[https://la-vallita.pages.dev](https://la-vallita.pages.dev)
 
 ---
 
@@ -164,15 +260,16 @@ Las contribuciones son bienvenidas. Para cambios importantes, abre primero un is
 
 ## 📄 Licencia
 
-Este proyecto está bajo la licencia **MIT**. Consulta el archivo [LICENSE](LICENSE) para más detalles.
+Este proyecto está bajo la licencia **MIT**.
 
 ---
 
 ## 📬 Contacto
 
-- **WhatsApp (familia)**: [+53 5 406 632](https://wa.me/5355406632)
+- **WhatsApp (pedidos)**: [+53 5 540 6632](https://wa.me/5355406632)
 - **WhatsApp (soporte técnico)**: [+53 5 641 8463](https://wa.me/5356418463)
 - **Sitio hermano**: [BitCriollo — Servicios Informáticos](https://bitcriollo.pages.dev)
+- **Canal de Telegram**: [Diario de un Informático](https://t.me/diario_del_informatico)
 
 ---
 
