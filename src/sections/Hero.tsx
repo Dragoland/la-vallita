@@ -171,33 +171,29 @@ const Hero: React.FC = () => {
 
         {/* CTAs */}
         <div className="hero-cta flex flex-wrap justify-center gap-4">
-          <a
-            href="#catalogo"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-md font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5"
-            style={{
-              background: 'linear-gradient(135deg, var(--wheat), var(--wheat-dark))',
-              color: 'var(--soil-dark)',
-            }}
-            onClick={(e) => {
-              e.preventDefault();
-              document.querySelector('#catalogo')?.scrollIntoView({ behavior: 'smooth' });
-            }}
+          <Link
+          to="/#catalogo"
+          className="inline-flex items-center gap-2 px-8 py-4 rounded-md font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5"
+          style={{
+            background: 'linear-gradient(135deg, var(--wheat), var(--wheat-dark))',
+            color: 'var(--soil-dark)',
+          }}
           >
-            Ver plantas disponibles
-          </a>
+          Ver plantas disponibles
+          </Link>
           <a
-            href="https://wa.me/5355406632?text=Hola%2C%20vi%20el%20sitio%20de%20La%20Vallita%20y%20me%20interesa%20consultar%20sobre%20plantas."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-md font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5"
-            style={{
-              background: 'rgba(255,255,255,0.08)',
-              color: 'var(--white)',
-              border: '1px solid rgba(255,255,255,0.25)',
-            }}
+          href="https://wa.me/5355406632?text=Hola%2C%20vi%20el%20sitio%20de%20La%20Vallita%20y%20me%20interesa%20consultar%20sobre%20plantas."
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-8 py-4 rounded-md font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5"
+          style={{
+            background: 'rgba(255,255,255,0.08)',
+            color: 'var(--white)',
+            border: '1px solid rgba(255,255,255,0.25)',
+          }}
           >
-            <MessageCircle size={16} />
-            Escribir por WhatsApp
+          <MessageCircle size={16} />
+          Escribir por WhatsApp
           </a>
         </div>
       </div>
