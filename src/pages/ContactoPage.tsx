@@ -20,7 +20,7 @@ const contactos = [
     label: '+53 5 5406632',
   },
   {
-    icon: 'A',
+    icon: 'D',
     title: 'Dragoland (BitCriollo)',
     desc: 'Soporte web y técnico',
     link: 'https://wa.me/5356418463?text=Hola%20Dragoland%2C%20tengo%20una%20duda%20sobre%20el%20sitio%20de%20La%20Vallita.',
