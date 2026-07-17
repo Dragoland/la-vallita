@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { MessageCircle } from 'lucide-react';
+import { Link } from 'react-router';
 
 const stats = [
   { num: '171', label: 'Especies' },
