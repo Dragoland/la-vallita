@@ -4,6 +4,7 @@ import Hero from '@/sections/Hero';
 import Catalogo from '@/sections/Catalogo';
 import Consejos from '@/sections/Consejos';
 import BitCriollo from '@/sections/BitCriollo';
+import Contacto from '@/sections/Contacto';
 import type { useCarrito } from '@/hooks/useCarrito';
 
 interface Props {
@@ -26,6 +27,7 @@ export default function Home({ carrito }: Props) {
       <Catalogo onAdd={carrito.agregar} onOpenCart={() => carrito.setAbierto(true)} />
       <Consejos />
       <BitCriollo />
+      <Contacto />
     </main>
   );
 }
