@@ -9,13 +9,10 @@ interface Props {
 
 const navLinks = [
   { label: 'Inicio', href: '#inicio', path: '/', isRoute: false },
-  { label: 'Historia', href: '#historia', path: '/#historia', isRoute: false },
-  { label: 'Legado', href: '#legado', path: '/#legado', isRoute: false },
-  { label: 'Reconocimientos', href: '#reconocimientos', path: '/#reconocimientos', isRoute: false },
   { label: 'Catálogo', href: '#catalogo', path: '/#catalogo', isRoute: false },
-  { label: 'Visítanos', href: '#visitanos', path: '/#visitanos', isRoute: false },
-  { label: 'Consejos', href: '/consejos', path: '/consejos', isRoute: true },
-  { label: 'Contacto', href: '#contacto', path: '/#contacto', isRoute: false },
+  { label: 'Consejos', href: '#consejos', path: '/#consejos', isRoute: false },
+  { label: 'Historia', href: '/historia', path: '/historia', isRoute: true },
+  { label: 'Contacto', href: '/contacto', path: '/contacto', isRoute: true },
 ];
 
 const Navbar: React.FC<Props> = ({ carrito }) => {

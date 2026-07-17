@@ -6,8 +6,8 @@ import { Link } from 'react-router';
 const stats = [
   { num: '171', label: 'Especies' },
   { num: '221+', label: 'Variedades' },
-  { num: '5\u00AA', label: 'Corona Nacional' },
-  { num: '100K+', label: 'Plantas / a\u00F1o' },
+  { num: '5ª', label: 'Corona Nacional' },
+  { num: '100K+', label: 'Plantas / año' },
 ];
 
 const LeafSVG: React.FC<{ className?: string; style?: React.CSSProperties }> = ({ className, style }) => (
@@ -18,7 +18,6 @@ const LeafSVG: React.FC<{ className?: string; style?: React.CSSProperties }> = (
 
 const Hero: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -62,9 +61,7 @@ const Hero: React.FC = () => {
         1.2
       );
 
-    return () => {
-      tl.kill();
-    };
+    return () => { tl.kill(); };
   }, []);
 
   return (
@@ -74,20 +71,14 @@ const Hero: React.FC = () => {
       className="relative text-center overflow-hidden"
       style={{ padding: '10rem 1.5rem 8rem', minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
     >
-      {/* Video Background */}
       <video
-        ref={videoRef}
-        autoPlay
-        muted
-        loop
-        playsInline
+        autoPlay muted loop playsInline
         className="absolute inset-0 w-full h-full object-cover"
         style={{ zIndex: 0 }}
       >
         <source src="/videos/hero-bg.mp4" type="video/mp4" />
       </video>
 
-      {/* Overlay */}
       <div
         className="absolute inset-0"
         style={{
@@ -96,14 +87,11 @@ const Hero: React.FC = () => {
         }}
       />
 
-      {/* Decorative leaves */}
       <LeafSVG className="absolute opacity-[0.06] pointer-events-none text-white" style={{ top: '10%', right: '5%', width: '180px', transform: 'rotate(15deg)', zIndex: 2 }} />
       <LeafSVG className="absolute opacity-[0.06] pointer-events-none text-white" style={{ bottom: '5%', left: '3%', width: '140px', transform: 'rotate(-20deg) scaleX(-1)', zIndex: 2 }} />
       <LeafSVG className="absolute opacity-[0.04] pointer-events-none text-white" style={{ top: '40%', left: '8%', width: '100px', transform: 'rotate(45deg)', zIndex: 2 }} />
 
-      {/* Content */}
       <div className="relative max-w-[900px] mx-auto" style={{ zIndex: 3 }}>
-        {/* Divider */}
         <div
           className="hero-divider mx-auto mb-6 rounded-sm origin-center"
           style={{
@@ -113,7 +101,6 @@ const Hero: React.FC = () => {
           }}
         />
 
-        {/* Badge */}
         <div
           className="hero-badge inline-flex items-center gap-2 px-5 py-2 rounded-full mb-8 font-mono text-xs font-semibold uppercase tracking-widest"
           style={{
@@ -125,7 +112,6 @@ const Hero: React.FC = () => {
           Quinta Corona de Excelencia Nacional — Finca Agrovida
         </div>
 
-        {/* Title */}
         <h1
           className="hero-title font-serif font-extrabold tracking-tight mb-6"
           style={{
@@ -140,7 +126,6 @@ const Hero: React.FC = () => {
           </em>
         </h1>
 
-        {/* Subtitle */}
         <p
           className="hero-sub text-lg font-light max-w-2xl mx-auto mb-10"
           style={{ color: 'rgba(255,255,255,0.85)', lineHeight: 1.8 }}
@@ -150,51 +135,43 @@ const Hero: React.FC = () => {
           Hoy, con la misma tierra y una nueva apuesta, volvemos a florecer.
         </p>
 
-        {/* Stats */}
         <div className="flex flex-wrap justify-center gap-10 mb-10">
           {stats.map((stat) => (
             <div key={stat.label} className="hero-stat text-center">
-              <span
-                className="block font-serif font-extrabold leading-none"
-                style={{ fontSize: '2.2rem', color: 'var(--wheat)' }}
-              >
+              <span className="block font-serif font-extrabold leading-none" style={{ fontSize: '2.2rem', color: 'var(--wheat)' }}>
                 {stat.num}
               </span>
-              <span
-                className="text-xs uppercase tracking-widest"
-                style={{ color: 'rgba(255,255,255,0.7)' }}
-              >
+              <span className="text-xs uppercase tracking-widest" style={{ color: 'rgba(255,255,255,0.7)' }}>
                 {stat.label}
               </span>
             </div>
           ))}
         </div>
 
-        {/* CTAs */}
         <div className="hero-cta flex flex-wrap justify-center gap-4">
           <Link
-          to="/#catalogo"
-          className="inline-flex items-center gap-2 px-8 py-4 rounded-md font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5"
-          style={{
-            background: 'linear-gradient(135deg, var(--wheat), var(--wheat-dark))',
-            color: 'var(--soil-dark)',
-          }}
+            to="/#catalogo"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-md font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5"
+            style={{
+              background: 'linear-gradient(135deg, var(--wheat), var(--wheat-dark))',
+              color: 'var(--soil-dark)',
+            }}
           >
-          Ver plantas disponibles
+            Ver plantas disponibles
           </Link>
           <a
-          href="https://wa.me/5355406632?text=Hola%2C%20vi%20el%20sitio%20de%20La%20Vallita%20y%20me%20interesa%20consultar%20sobre%20plantas."
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-8 py-4 rounded-md font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5"
-          style={{
-            background: 'rgba(255,255,255,0.08)',
-            color: 'var(--white)',
-            border: '1px solid rgba(255,255,255,0.25)',
-          }}
+            href="https://wa.me/5355406632?text=Hola%2C%20vi%20el%20sitio%20de%20La%20Vallita%20y%20me%20interesa%20consultar%20sobre%20plantas."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-md font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5"
+            style={{
+              background: 'rgba(255,255,255,0.08)',
+              color: 'var(--white)',
+              border: '1px solid rgba(255,255,255,0.25)',
+            }}
           >
-          <MessageCircle size={16} />
-          Escribir por WhatsApp
+            <MessageCircle size={16} />
+            Escribir por WhatsApp
           </a>
         </div>
       </div>
