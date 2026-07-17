@@ -7,50 +7,50 @@ const BitCriollo: React.FC = () => {
 
   return (
     <section
-    ref={ref}
-    className="relative overflow-hidden text-center"
-    style={{
-      background: 'linear-gradient(135deg, #1a1a2e, #16213e)',
-          padding: '5rem 1.5rem',
-          color: 'var(--white)',
-    }}
+      ref={ref}
+      className="relative overflow-hidden text-center"
+      style={{
+        background: 'linear-gradient(135deg, #1a1a2e, #16213e)',
+        padding: '5rem 1.5rem',
+        color: 'var(--white)',
+      }}
     >
-    <div
-    className="absolute rounded-full"
-    style={{
-      width: '300px',
-      height: '300px',
-      border: '2px solid rgba(0, 212, 170, 0.05)',
+      <div
+        className="absolute rounded-full"
+        style={{
+          width: '300px',
+          height: '300px',
+          border: '2px solid rgba(0, 212, 170, 0.05)',
           top: '-100px',
           left: '-100px',
-    }}
-    />
+        }}
+      />
 
-    <div className="relative max-w-[600px] mx-auto">
-    <h2 className="font-serif text-3xl font-bold mb-4" style={{ color: 'var(--white)' }}>
-    ¿Tu PC o celular necesita ayuda?
-    </h2>
-    <p className="text-base font-light leading-relaxed mb-8" style={{ color: 'rgba(255,255,255,0.85)' }}>
-    Mientras cuidas tu jardín, también cuidamos tu tecnología.{' '}
-    <strong>BitCriollo</strong> es el servicio informático de confianza que ofrece{' '}
-    <strong>Dragoland</strong>: limpieza de virus, formateo, Linux, recuperación de datos,
-    diseño gráfico y más. Atención en Falcón, sin precios de ciudad.
-    </p>
-    <a
-    href="https://bitcriollo.pages.dev"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="inline-flex items-center gap-2 px-8 py-4 rounded-md font-bold text-sm transition-all duration-300 hover:-translate-y-0.5"
-    style={{
-      background: 'linear-gradient(135deg, #00d4aa, #00b894)',
-          color: '#1a1a2e',
-          boxShadow: '0 4px 15px rgba(0, 212, 170, 0.2)',
-    }}
-    >
-    <ExternalLink size={16} />
-    Visitar BitCriollo
-    </a>
-    </div>
+      <div className="relative max-w-[600px] mx-auto">
+        <h2 className="font-serif text-3xl font-bold mb-4" style={{ color: 'var(--white)' }}>
+          ¿Tu PC o celular necesita ayuda?
+        </h2>
+        <p className="text-base font-light leading-relaxed mb-8" style={{ color: 'rgba(255,255,255,0.85)' }}>
+          Mientras cuidas tu jardín, también cuidamos tu tecnología.{' '}
+          <strong>BitCriollo</strong> es el servicio informático de confianza que ofrece{' '}
+          <strong>Dragoland</strong>: limpieza de virus, formateo, Linux, recuperación de datos,
+          diseño gráfico y más. Atención en Falcón, sin precios de ciudad.
+        </p>
+        <a
+          href="https://bitcriollo.pages.dev"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-8 py-4 rounded-md font-bold text-sm transition-all duration-300 hover:-translate-y-0.5"
+          style={{
+            background: 'linear-gradient(135deg, #00d4aa, #00b894)',
+            color: '#1a1a2e',
+            boxShadow: '0 4px 15px rgba(0, 212, 170, 0.2)',
+          }}
+        >
+          <ExternalLink size={16} />
+          Visitar BitCriollo
+        </a>
+      </div>
     </section>
   );
 };

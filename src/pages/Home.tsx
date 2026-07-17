@@ -10,29 +10,34 @@ import Visitanos from '@/sections/Visitanos';
 import Consejos from '@/sections/Consejos';
 import Contacto from '@/sections/Contacto';
 import BitCriollo from '@/sections/BitCriollo';
+import type { useCarrito } from '@/hooks/useCarrito';
 
-export default function Home() {
-    const { hash } = useLocation();
+interface Props {
+  carrito: ReturnType<typeof useCarrito>;
+}
 
-    useEffect(() => {
-        if (hash) {
-            const el = document.querySelector(hash);
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }
-    }, [hash]);
+export default function Home({ carrito }: Props) {
+  const { hash } = useLocation();
 
-    return (
-        <main>
-        <Hero />
-        <Historia />
-        <Legado />
-        <Reconocimientos />
-        <Medios />
-        <Catalogo />
-        <Visitanos />
-        <Consejos />
-        <Contacto />
-        <BitCriollo />
-        </main>
-    );
+  useEffect(() => {
+    if (hash) {
+      const el = document.querySelector(hash);
+      if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 100);
+    }
+  }, [hash]);
+
+  return (
+    <main>
+      <Hero />
+      <Historia />
+      <Legado />
+      <Reconocimientos />
+      <Medios />
+      <Catalogo onAdd={carrito.agregar} onOpenCart={() => carrito.setAbierto(true)} />
+      <Visitanos />
+      <Consejos />
+      <Contacto />
+      <BitCriollo />
+    </main>
+  );
 }

@@ -6,6 +6,7 @@ import Footer from '@/sections/Footer';
 import CarritoSidebar from '@/components/CarritoSidebar';
 import Home from '@/pages/Home';
 import ConsejosPage from '@/pages/ConsejosPage';
+import PlantaDetail from '@/pages/PlantaDetail';
 
 export default function App() {
   useSmoothScroll();
@@ -13,13 +14,14 @@ export default function App() {
 
   return (
     <div className="min-h-screen" style={{ background: 'var(--cream)' }}>
-    <Navbar carrito={carrito} />
-    <CarritoSidebar carrito={carrito} />
-    <Routes>
-    <Route path="/" element={<Home />} />
-    <Route path="/consejos" element={<ConsejosPage />} />
-    </Routes>
-    <Footer />
+      <Navbar carrito={carrito} />
+      <CarritoSidebar carrito={carrito} />
+      <Routes>
+        <Route path="/" element={<Home carrito={carrito} />} />
+        <Route path="/consejos" element={<ConsejosPage />} />
+        <Route path="/planta/:slug" element={<PlantaDetail onAdd={carrito.agregar} onOpenCart={() => carrito.setAbierto(true)} />} />
+      </Routes>
+      <Footer />
     </div>
   );
 }
