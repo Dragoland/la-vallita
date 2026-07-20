@@ -196,4 +196,4 @@ const PlantaDetail: React.FC<Props> = ({ onAdd, onOpenCart }) => {
 };
 
 export default PlantaDetail;
-export default PlantaDetail;
+
