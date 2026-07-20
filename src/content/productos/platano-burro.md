@@ -8,6 +8,6 @@ precio_mlc: 0.80
 unidad: planta
 categoria: hortaliza
 tags: [cocina, frito, resistente]
-imagen: images/platano_burro.jpg
+imagen: public/images/platano_burro.jpg
 ---
 Plátano de cocinar, firme y resistente. Ideal para frito, tostones y platos tradicionales cubanos. Más robusto que el de mesa y de mejor rendimiento en suelos locales.
