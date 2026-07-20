@@ -5,7 +5,7 @@ cientifico: Musa × paradisiaca (grupo ABB)
 estado: disponible
 precio_cup: 80
 precio_mlc: 0.80
-unidad: planta
+unidad: unidad
 categoria: hortaliza
 tags: [cocina, frito, resistente]
 imagen: /public/images/platano_burro.jpg
