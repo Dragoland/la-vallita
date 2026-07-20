@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
+import { Sparkles } from 'lucide-react';
 import SectionHeader from '@/components/SectionHeader';
 import ProductoCard from '@/components/ProductoCard';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
@@ -12,6 +13,7 @@ const categorias = [
   { key: 'hortaliza', label: 'Hortalizas' },
   { key: 'cafe', label: 'Café' },
   { key: 'ornamental', label: 'Ornamentales' },
+  { key: 'otro', label: 'Otros' },
 ];
 
 interface Props {
@@ -22,12 +24,12 @@ interface Props {
 const Catalogo: React.FC<Props> = ({ onAdd, onOpenCart }) => {
   const [catActiva, setCatActiva] = useState('todos');
   const ref = useScrollAnimation({ y: 40, duration: 0.6, stagger: 0.08 });
-  const { productos, loading } = useProductos();
+  const { disponibles, loading } = useProductos();
   const navigate = useNavigate();
 
   const filtrados = catActiva === 'todos'
-    ? productos
-    : productos.filter((p) => p.categoria === catActiva);
+    ? disponibles
+    : disponibles.filter((p) => p.categoria === catActiva);
 
   return (
     <section id="catalogo" style={{ background: 'var(--cream)', padding: '6rem 1.5rem' }}>
@@ -35,8 +37,24 @@ const Catalogo: React.FC<Props> = ({ onAdd, onOpenCart }) => {
         <SectionHeader
           label="Lo que cultivamos"
           title="Catálogo de plantas"
-          subtitle="Patrimonio real de La Vallita. Pregunta por lo que no ves, quizás esté brotando."
+          subtitle="Patrimonio real de La Vallita. Solo mostramos lo que está realmente disponible."
         />
+
+        {/* Link to specials */}
+        <div className="flex justify-center mb-8">
+          <button
+            onClick={() => navigate('/especiales')}
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5"
+            style={{
+              background: 'linear-gradient(135deg, #f5a623, #f57c00)',
+              color: 'white',
+              boxShadow: '0 4px 15px rgba(245, 166, 35, 0.3)',
+            }}
+          >
+            <Sparkles size={18} />
+            Ver productos especiales y edición limitada
+          </button>
+        </div>
 
         <div className="flex flex-wrap gap-3 mb-8 justify-center">
           {categorias.map((cat) => (
@@ -55,6 +73,15 @@ const Catalogo: React.FC<Props> = ({ onAdd, onOpenCart }) => {
           <div className="text-center py-12">
             <div className="w-8 h-8 border-2 border-[var(--leaf)] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
             <p style={{ color: 'var(--text-muted)' }}>Cargando catálogo...</p>
+          </div>
+        ) : filtrados.length === 0 ? (
+          <div className="text-center py-12">
+            <p className="text-lg font-serif mb-2" style={{ color: 'var(--soil-dark)' }}>
+              No hay productos disponibles en esta categoría
+            </p>
+            <p className="text-sm" style={{ color: 'var(--text-muted)' }}>
+              Prueba con otra categoría o visita los productos especiales.
+            </p>
           </div>
         ) : (
           <div ref={ref} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
