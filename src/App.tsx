@@ -9,6 +9,7 @@ import ConsejosPage from '@/pages/ConsejosPage';
 import HistoriaPage from '@/pages/HistoriaPage';
 import ContactoPage from '@/pages/ContactoPage';
 import PlantaDetail from '@/pages/PlantaDetail';
+import Especiales from '@/components/Especiales';
 
 export default function App() {
   useSmoothScroll();
@@ -23,7 +24,9 @@ export default function App() {
         <Route path="/consejos" element={<ConsejosPage />} />
         <Route path="/historia" element={<HistoriaPage />} />
         <Route path="/contacto" element={<ContactoPage />} />
-        <Route path="/planta/:slug" element={<PlantaDetail onAdd={carrito.agregar} onOpenCart={() => carrito.setAbierto(true)} />} />
+        <Route path="/planta/:slug" element={<PlantaDetail onAdd={carrito.agregar}
+        onOpenCart={() => carrito.setAbierto(true)} />} />
+        <Route path="/especiales" element={<Especiales onAdd={onAdd} onOpenCart={onOpenCart} />} />
       </Routes>
       <Footer />
     </div>

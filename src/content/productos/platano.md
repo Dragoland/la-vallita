@@ -2,7 +2,7 @@
 nombre: Plátano
 slug: platano
 cientifico: Musa × paradisiaca
-estado: disponible
+estado: no_disponible
 precio_cup: 60
 precio_mlc: 0.60
 unidad: planta

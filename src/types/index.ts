@@ -3,7 +3,7 @@ export interface Producto {
   slug: string;
   cientifico: string;
   desc: string;
-  estado: 'disponible' | 'brotando' | 'encargo' | 'legacy' | 'agotado';
+  estado: 'disponible' | 'no_disponible';
   precio_cup: number | null;
   precio_mlc: number | null;
   unidad: string;
@@ -11,6 +11,8 @@ export interface Producto {
   imagen?: string;
   tags: string[];
   variedades?: string[];
+  stock?: number;
+  especial?: boolean;
 }
 
 export interface Consejo {

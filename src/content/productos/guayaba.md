@@ -2,7 +2,7 @@
 nombre: Guayaba
 slug: guayaba
 cientifico: Psidium guajava — Variedades de legado
-estado: legacy
+estado: no_disponible
 precio_cup: 150
 precio_mlc: 1.50
 unidad: planta

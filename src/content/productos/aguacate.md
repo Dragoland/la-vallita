@@ -2,7 +2,7 @@
 nombre: Aguacate
 slug: aguacate
 cientifico: Persea americana
-estado: brotando
+estado: no_disponible
 precio_cup: 250
 precio_mlc: 2.50
 unidad: planta

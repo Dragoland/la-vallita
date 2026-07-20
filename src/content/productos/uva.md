@@ -2,7 +2,7 @@
 nombre: Uva
 slug: uva
 cientifico: Vitis vinifera
-estado: encargo
+estado: no_disponible
 precio_cup: 350
 precio_mlc: 3.50
 unidad: planta

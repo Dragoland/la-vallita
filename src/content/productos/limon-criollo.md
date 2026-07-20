@@ -2,7 +2,7 @@
 nombre: Limón criollo
 slug: limon-criollo
 cientifico: Citrus × limon
-estado: disponible
+estado: no_disponible
 precio_cup: 120
 precio_mlc: 1.20
 unidad: planta
