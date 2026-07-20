@@ -5,8 +5,8 @@ cientifico: Musa × paradisiaca
 estado: disponible
 precio_cup: 80
 precio_mlc: 0.80
-unidad: planta
-categoria: hortaliza
+unidad: unidad
+categoria: fruta
 tags: [fruta, dulce, rápido]
 imagen: /public/images/platano_fruta.jpg
 ---
