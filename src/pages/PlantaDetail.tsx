@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router';
-import { ArrowLeft, Plus, MessageCircle, Clock, Bell } from 'lucide-react';
+import { ArrowLeft, Plus, MessageCircle } from 'lucide-react';
 import { useProductos } from '@/hooks/useProductos';
 import type { Producto } from '@/types';
 
@@ -8,14 +8,6 @@ interface Props {
   onAdd: (p: Producto) => void;
   onOpenCart: () => void;
 }
-
-const estadoConfig = {
-  disponible: { bg: '#e8f5e9', color: '#2e7d32', label: 'Disponible', canAdd: true },
-  brotando: { bg: '#fff8e1', color: '#f57c00', label: 'Brotando', canAdd: true },
-  encargo: { bg: '#e3f2fd', color: '#1565c0', label: 'Solo por encargo', canAdd: true },
-  legacy: { bg: '#f3e5f5', color: '#6a1b9a', label: 'Variedades de legado', canAdd: false },
-  agotado: { bg: '#e2e3e5', color: '#383d41', label: 'Agotado', canAdd: false },
-};
 
 const PlantaDetail: React.FC<Props> = ({ onAdd, onOpenCart }) => {
   const { slug } = useParams<{ slug: string }>();
@@ -53,20 +45,17 @@ const PlantaDetail: React.FC<Props> = ({ onAdd, onOpenCart }) => {
     );
   }
 
-  const est = estadoConfig[planta.estado];
-
-  const handleAction = () => {
-    if (est.canAdd) {
-      onAdd(planta);
-      onOpenCart();
-    } else if (planta.estado === 'agotado') {
-      const msg = `Hola, me interesa ${planta.nombre}. Avísenme cuando haya disponibilidad.`;
-      window.open(`https://wa.me/5355406632?text=${encodeURIComponent(msg)}`, '_blank');
-    } else {
-      const msg = `Hola, me interesa ${planta.nombre} de La Vallita. ¿Qué variedades tienen?`;
-      window.open(`https://wa.me/5355406632?text=${encodeURIComponent(msg)}`, '_blank');
-    }
+  const handleAdd = () => {
+    onAdd(planta);
+    onOpenCart();
   };
+
+  const handleConsult = () => {
+    const msg = `Hola, me interesa ${planta.nombre} de La Vallita. ¿Tienen disponibilidad?`;
+    window.open(`https://wa.me/5355406632?text=${encodeURIComponent(msg)}`, '_blank');
+  };
+
+  const isDisponible = planta.estado === 'disponible';
 
   return (
     <div style={{ background: 'var(--cream)', minHeight: '100vh' }}>
@@ -93,22 +82,33 @@ const PlantaDetail: React.FC<Props> = ({ onAdd, onOpenCart }) => {
               minHeight: '400px',
             }}
           >
-            <div className="text-center text-white">
-              <span className="text-6xl mb-4 block">🌿</span>
-              <span className="font-serif text-xl font-semibold">{planta.nombre}</span>
-              <span className="block text-sm text-white/80 mt-2">Fotografía real próximamente</span>
-            </div>
+            {planta.imagen ? (
+              <img
+                src={planta.imagen}
+                alt={planta.nombre}
+                className="w-full h-full object-cover"
+                style={{ minHeight: '400px' }}
+              />
+            ) : (
+              <div className="text-center text-white">
+                <span className="text-6xl mb-4 block">🌿</span>
+                <span className="font-serif text-xl font-semibold">{planta.nombre}</span>
+                <span className="block text-sm text-white/80 mt-2">Fotografía real próximamente</span>
+              </div>
+            )}
           </div>
 
           {/* Info */}
           <div>
-            <span
-              className="inline-flex items-center gap-2 text-xs font-semibold rounded-full px-4 py-1.5 mb-4"
-              style={{ background: est.bg, color: est.color }}
-            >
-              <span className="w-1.5 h-1.5 rounded-full" style={{ background: est.color }} />
-              {est.label}
-            </span>
+            {planta.stock !== undefined && planta.stock > 0 && (
+              <span
+                className="inline-flex items-center gap-2 text-xs font-bold rounded-full px-4 py-1.5 mb-4"
+                style={{ background: '#ffebee', color: '#c62828', letterSpacing: '0.5px' }}
+              >
+                <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: '#c62828' }} />
+                Solo {planta.stock} {planta.stock === 1 ? 'unidad' : 'unidades'} disponible{planta.stock === 1 ? '' : 's'}
+              </span>
+            )}
 
             <h1 className="font-serif text-4xl font-bold mb-2" style={{ color: 'var(--soil-dark)' }}>
               {planta.nombre}
@@ -169,20 +169,25 @@ const PlantaDetail: React.FC<Props> = ({ onAdd, onOpenCart }) => {
               <span className="text-sm" style={{ color: 'var(--text-muted)' }}>/ {planta.unidad}</span>
             </div>
 
-            <button
-              onClick={handleAction}
-              className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-bold text-sm text-white transition-all duration-300 hover:-translate-y-0.5"
-              style={
-                est.canAdd
-                  ? { background: 'linear-gradient(135deg, var(--leaf), var(--leaf-dark))' }
-                  : planta.estado === 'agotado'
-                  ? { background: '#9e9e9e' }
-                  : { background: 'linear-gradient(135deg, #9c27b0, #6a1b9a)' }
-              }
-            >
-              {est.canAdd ? <Plus size={18} /> : planta.estado === 'agotado' ? <Bell size={18} /> : <MessageCircle size={18} />}
-              {est.canAdd ? 'Añadir al pedido' : planta.estado === 'agotado' ? 'Avisarme cuando haya' : 'Consultar por WhatsApp'}
-            </button>
+            {isDisponible ? (
+              <button
+                onClick={handleAdd}
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-bold text-sm text-white transition-all duration-300 hover:-translate-y-0.5"
+                style={{ background: 'linear-gradient(135deg, var(--leaf), var(--leaf-dark))' }}
+              >
+                <Plus size={18} />
+                Añadir al pedido
+              </button>
+            ) : (
+              <button
+                onClick={handleConsult}
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-lg font-bold text-sm text-white transition-all duration-300 hover:-translate-y-0.5"
+                style={{ background: '#9e9e9e' }}
+              >
+                <MessageCircle size={18} />
+                Consultar por WhatsApp
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -190,4 +195,5 @@ const PlantaDetail: React.FC<Props> = ({ onAdd, onOpenCart }) => {
   );
 };
 
+export default PlantaDetail;
 export default PlantaDetail;
