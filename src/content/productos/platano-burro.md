@@ -6,7 +6,7 @@ estado: disponible
 precio_cup: 80
 precio_mlc: 0.80
 unidad: unidad
-categoria: hortaliza
+categoria: frutal
 tags: [cocina, frito, resistente]
 imagen: /public/images/platano_burro.jpg
 ---
