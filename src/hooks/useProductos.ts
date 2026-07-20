@@ -86,3 +86,30 @@ export function useEspeciales() {
 
   return { especiales, loading };
 }
+
+// NUEVO: Carga TODOS los productos (normales + especiales) para búsqueda por slug
+export function useTodosProductos() {
+  const [productos, setProductos] = useState<Producto[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const modProductos = import.meta.glob('/src/content/productos/*.md', { eager: true, as: 'raw' });
+    const modEspeciales = import.meta.glob('/src/content/especiales/*.md', { eager: true, as: 'raw' });
+    const parsed: Producto[] = [];
+
+    for (const path in modProductos) {
+      const raw = modProductos[path] as string;
+      parsed.push(parseProducto(raw));
+    }
+
+    for (const path in modEspeciales) {
+      const raw = modEspeciales[path] as string;
+      parsed.push(parseProducto(raw));
+    }
+
+    setProductos(parsed);
+    setLoading(false);
+  }, []);
+
+  return { productos, loading };
+}
