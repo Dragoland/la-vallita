@@ -10,6 +10,6 @@ categoria: ornamental
 tags: [ornamental, palma, exótica]
 stock: 2
 especial: true
-imagen: public/images/palma_langosta.jpg
+imagen: /public/images/palma_langosta.jpg
 ---
 Palma exótica de hojas bipinnadas que recuerdan la cola de una langosta. Elegante y de alto valor ornamental para jardines y espacios amplios. Solo 2 unidades disponibles.
