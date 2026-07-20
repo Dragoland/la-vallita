@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router';
 import { ArrowLeft, Plus, MessageCircle } from 'lucide-react';
-import { useProductos } from '@/hooks/useProductos';
+import { useTodosProductos } from '@/hooks/useProductos';
 import type { Producto } from '@/types';
 
 interface Props {
@@ -12,7 +12,7 @@ interface Props {
 const PlantaDetail: React.FC<Props> = ({ onAdd, onOpenCart }) => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
-  const { productos, loading } = useProductos();
+  const { productos, loading } = useTodosProductos();
 
   const planta = productos.find((p) => p.slug === slug);
 
