@@ -9,7 +9,7 @@ import ConsejosPage from '@/pages/ConsejosPage';
 import HistoriaPage from '@/pages/HistoriaPage';
 import ContactoPage from '@/pages/ContactoPage';
 import PlantaDetail from '@/pages/PlantaDetail';
-import Especiales from '@/components/Especiales';
+import Especiales from '@/sections/Especiales';
 
 export default function App() {
   useSmoothScroll();
