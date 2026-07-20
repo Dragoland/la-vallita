@@ -8,6 +8,6 @@ precio_mlc: 5.00
 unidad: planta
 categoria: ornamental
 tags: [ornamental, sombra, resistente]
-imagen: images/pinos.jpg
+imagen: public/images/pinos.jpg
 ---
 Árbol ornamental de hoja perenne, excelente para sombra y cercas vivas. Resistente a condiciones locales y de rápido crecimiento.
