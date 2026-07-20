@@ -8,6 +8,6 @@ precio_mlc: 10.00
 unidad: unidad
 categoria: otro
 tags: [crianza, carne, producción]
-imagen: public/images/conejo.jpg
+imagen: images/conejo.jpg
 ---
 Conejos de raza adaptada al clima local, ideales para crianza y producción de carne. Sanos, vacunados y listos para reproducción.
