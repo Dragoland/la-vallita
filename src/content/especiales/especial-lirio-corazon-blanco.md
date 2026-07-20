@@ -10,6 +10,6 @@ categoria: ornamental
 tags: [ornamental, rara, última unidad]
 stock: 1
 especial: true
-imagen: /images/lirio_corazon_blanco.jpg
+imagen: images/lirio_corazon_blanco.jpg
 ---
 Lirio ornamental de hojas en forma de corazón con patrones blancos y verdes. Planta de sombra parcial, ideal para interiores y jardines tropicales. Solo queda 1 unidad.
