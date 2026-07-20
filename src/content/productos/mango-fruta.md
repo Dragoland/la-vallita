@@ -8,6 +8,6 @@ precio_mlc: 1.00
 unidad: unidad
 categoria: frutal
 tags: [dulce, fresco, temporada]
-imagen: images/mango_fruta.jpg
+imagen: public/images/mango_fruta.jpg
 ---
 Mango fresco de la finca, recolectado en su punto óptimo de maduración. Dulce, jugoso y de pulpa firme. Disponible según temporada de cosecha.
