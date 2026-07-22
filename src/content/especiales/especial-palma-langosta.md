@@ -3,8 +3,8 @@ nombre: Palma Cola de Langosta (Stock limitado)
 slug: palma-langosta-especial
 cientifico: Caryota mitis
 estado: disponible
-precio_cup: 3000
-precio_mlc: 30.00
+precio_cup: 2500
+precio_mlc: 25.00
 unidad: planta
 categoria: ornamental
 tags: [ornamental, palma, exótica]
