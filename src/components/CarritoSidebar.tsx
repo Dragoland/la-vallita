@@ -26,7 +26,7 @@ const CarritoSidebar: React.FC<Props> = ({ carrito }) => {
   const handlePedido = () => {
     const msg = generarMensajeWhatsApp();
     if (!msg) return;
-    const url = `https://wa.me/5356418463?text=${encodeURIComponent(msg)}`;
+    const url = `https://wa.me/5355406632?text=${encodeURIComponent(msg)}`;
     window.open(url, '_blank');
   };
 

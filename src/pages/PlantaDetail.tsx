@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router';
 import { ArrowLeft, Plus, MessageCircle } from 'lucide-react';
 import { useTodosProductos } from '@/hooks/useProductos';
+import { addToast } from '@/lib/toastStore';
 import type { Producto } from '@/types';
 
 interface Props {
@@ -48,6 +49,7 @@ const PlantaDetail: React.FC<Props> = ({ onAdd, onOpenCart }) => {
   const handleAdd = () => {
     onAdd(planta);
     onOpenCart();
+    addToast(`🌿 ${planta.nombre} añadida al pedido`, 'success');
   };
 
   const handleConsult = () => {
@@ -74,7 +76,6 @@ const PlantaDetail: React.FC<Props> = ({ onAdd, onOpenCart }) => {
 
       <div className="max-w-[1200px] mx-auto px-6 py-12">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          {/* Imagen */}
           <div
             className="rounded-2xl overflow-hidden flex items-center justify-center"
             style={{
@@ -98,7 +99,6 @@ const PlantaDetail: React.FC<Props> = ({ onAdd, onOpenCart }) => {
             )}
           </div>
 
-          {/* Info */}
           <div>
             {planta.stock !== undefined && planta.stock > 0 && (
               <span
@@ -196,4 +196,3 @@ const PlantaDetail: React.FC<Props> = ({ onAdd, onOpenCart }) => {
 };
 
 export default PlantaDetail;
-

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Plus, MessageCircle } from 'lucide-react';
 import type { Producto } from '@/types';
+import { addToast } from '@/lib/toastStore';
 
 interface Props {
   producto: Producto;
@@ -14,6 +15,7 @@ const ProductoCard: React.FC<Props> = ({ producto, onAdd, onOpenCart, onDetail }
     e.stopPropagation();
     onAdd(producto);
     onOpenCart();
+    addToast(`🌿 ${producto.nombre} añadida al pedido`, 'success');
   };
 
   const handleConsult = (e: React.MouseEvent) => {
@@ -69,7 +71,6 @@ const ProductoCard: React.FC<Props> = ({ producto, onAdd, onOpenCart, onDetail }
           {producto.desc.slice(0, 120)}...
         </p>
 
-        {/* Stock badge for special products */}
         {producto.stock !== undefined && producto.stock > 0 && (
           <span
             className="inline-flex items-center gap-2 text-xs font-bold rounded-full px-4 py-1.5 mb-3 w-fit"

@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Consejo } from '@/types';
+import { parseMarkdownLite } from '@/lib/parseMarkdownLite';
 
 interface Props {
   consejo: Consejo;
@@ -27,9 +28,11 @@ const ConsejoCard: React.FC<Props> = ({ consejo, compacto = false }) => {
         <h4 className="font-serif text-lg font-bold mb-2" style={{ color: 'var(--soil-dark)' }}>
           {consejo.titulo}
         </h4>
-        <p className="text-sm leading-relaxed flex-grow" style={{ color: 'var(--text-soft)' }}>
-          {consejo.resumen}
-        </p>
+        <div
+          className="text-sm leading-relaxed flex-grow"
+          style={{ color: 'var(--text-soft)' }}
+          dangerouslySetInnerHTML={{ __html: parseMarkdownLite(consejo.resumen) }}
+        />
         <div className="mt-3 flex flex-wrap gap-1">
           {consejo.tags.map((t) => (
             <span key={t} className="bg-cream text-earth text-xs px-2 py-1 rounded-full">#{t}</span>
@@ -60,9 +63,11 @@ const ConsejoCard: React.FC<Props> = ({ consejo, compacto = false }) => {
       <h4 className="font-serif text-xl font-bold mb-3" style={{ color: 'var(--soil-dark)' }}>
         {consejo.titulo}
       </h4>
-      <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--text-soft)' }}>
-        {consejo.texto}
-      </p>
+      <div
+        className="text-sm leading-relaxed mb-4"
+        style={{ color: 'var(--text-soft)' }}
+        dangerouslySetInnerHTML={{ __html: parseMarkdownLite(consejo.texto) }}
+      />
       <div className="flex flex-wrap gap-2">
         {consejo.tags.map((t) => (
           <span key={t} className="bg-cream text-xs px-3 py-1 rounded-full" style={{ color: 'var(--text-soft)' }}>#{t}</span>
