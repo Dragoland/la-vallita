@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router';
 import Hero from '@/sections/Hero';
+import AnuncioFeria from '@/sections/AnuncioFeria';  // ← NUEVO
 import Catalogo from '@/sections/Catalogo';
 import Consejos from '@/sections/Consejos';
 import BitCriollo from '@/sections/BitCriollo';
@@ -22,10 +23,11 @@ export default function Home({ carrito }: Props) {
 
   return (
     <main>
-      <Hero />
-      <Catalogo onAdd={carrito.agregar} onOpenCart={() => carrito.setAbierto(true)} />
-      <Consejos />
-      <BitCriollo />
+    <Hero />
+    <AnuncioFeria />
+    <Catalogo onAdd={carrito.agregar} onOpenCart={() => carrito.setAbierto(true)} />
+    <Consejos />
+    <BitCriollo />
     </main>
   );
 }
