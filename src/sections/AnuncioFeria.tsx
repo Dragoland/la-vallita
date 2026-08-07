@@ -8,16 +8,12 @@ const AnuncioFeria: React.FC = () => {
     const [mensaje, setMensaje] = useState('');
 
     useEffect(() => {
-        // Check if user already dismissed this session
         if (sessionStorage.getItem('anuncioFeriaCerrado') === 'true') return;
 
         const ahora = new Date();
-        const diaSemana = ahora.getDay(); // 0 = Domingo
+        const diaSemana = ahora.getDay();
         const hora = ahora.getHours();
 
-        // Show on Sundays. Adjust window as you prefer:
-        // - 6:00 to 13:00 = during/around fair hours
-        // - Or simply: diaSemana === 0 to show all Sunday
         const esDomingo = diaSemana === 0;
         const enHorarioFeria = hora >= 6 && hora < 13;
 
@@ -70,7 +66,6 @@ const AnuncioFeria: React.FC = () => {
             padding: '1.25rem 1.5rem',
         }}
         >
-        {/* Decorative background circles */}
         <div
         className="absolute rounded-full pointer-events-none"
         style={{

@@ -1,7 +1,15 @@
 import React from 'react';
-import { Plus, MessageCircle } from 'lucide-react';
+import { Plus, MessageCircle, Sprout } from 'lucide-react';
 import type { Producto } from '@/types';
 import { addToast } from '@/lib/toastStore';
+
+const categoriaLabels: Record<string, { label: string; color: string; bg: string }> = {
+  frutal: { label: 'Frutal', color: '#4a7c2e', bg: 'rgba(74, 124, 46, 0.1)' },
+  hortaliza: { label: 'Hortaliza', color: '#b8653c', bg: 'rgba(184, 101, 60, 0.1)' },
+  cafe: { label: 'Café', color: '#6b4423', bg: 'rgba(107, 68, 35, 0.1)' },
+  ornamental: { label: 'Ornamental', color: '#8b6914', bg: 'rgba(139, 105, 20, 0.1)' },
+  otro: { label: 'Otro', color: '#5c4d35', bg: 'rgba(92, 77, 53, 0.1)' },
+};
 
 interface Props {
   producto: Producto;
@@ -24,44 +32,61 @@ const ProductoCard: React.FC<Props> = ({ producto, onAdd, onOpenCart, onDetail }
     window.open(`https://wa.me/5355406632?text=${encodeURIComponent(msg)}`, '_blank');
   };
 
+  const catInfo = categoriaLabels[producto.categoria] || categoriaLabels.otro;
+
   return (
     <div
-      className="group relative bg-white rounded-2xl overflow-hidden flex flex-col transition-all duration-400 hover:-translate-y-2 cursor-pointer"
+      className="group relative rounded-2xl overflow-hidden flex flex-col cursor-pointer card-hover"
       style={{
+        background: 'var(--bg-card)',
         boxShadow: '0 4px 20px var(--shadow)',
-        border: '1px solid rgba(139, 105, 20, 0.08)',
+        border: '1px solid var(--border-color)',
       }}
       onClick={onDetail}
     >
+      {/* Top gradient bar on hover */}
       <div
         className="absolute top-0 left-0 right-0 h-1 rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
         style={{ background: 'linear-gradient(90deg, var(--wheat), var(--leaf))', zIndex: 2 }}
       />
+
+      {/* Category badge */}
+      <div className="absolute top-3 left-3 z-10">
+        <span 
+          className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full"
+          style={{ background: catInfo.bg, color: catInfo.color, border: `1px solid ${catInfo.color}20` }}
+        >
+          <Sprout size={10} />
+          {catInfo.label}
+        </span>
+      </div>
 
       <div className="relative h-[220px] overflow-hidden">
         {producto.imagen ? (
           <img
             src={producto.imagen}
             alt={producto.nombre}
-            className="w-full h-full object-cover transition-transform duration-400 group-hover:scale-105"
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
           />
         ) : (
           <div
-            className="w-full h-full flex flex-col items-center justify-center transition-transform duration-400 group-hover:scale-105"
+            className="w-full h-full flex flex-col items-center justify-center transition-transform duration-500 group-hover:scale-110"
             style={{ background: 'linear-gradient(135deg, var(--leaf-light), var(--leaf-dark))' }}
           >
-            <span className="text-5xl mb-2">🌿</span>
+            <span className="text-5xl mb-2 animate-float">🌿</span>
             <span className="font-serif text-lg font-semibold text-white">{producto.nombre}</span>
             <span className="text-sm text-white/80">Fotografía real próximamente</span>
           </div>
         )}
-        <svg viewBox="0 0 100 100" className="absolute -right-5 -top-5 w-[120px] h-[120px] opacity-[0.15]" fill="var(--leaf-dark)">
+
+        {/* Decorative leaf watermark */}
+        <svg viewBox="0 0 100 100" className="absolute -right-5 -top-5 w-[120px] h-[120px] opacity-[0.1] group-hover:opacity-[0.15] transition-opacity duration-300" fill="var(--leaf-dark)">
           <path d="M50 90 Q20 50 50 10 Q80 50 50 90" />
         </svg>
       </div>
 
       <div className="p-6 flex flex-col flex-grow">
-        <h4 className="font-serif text-xl font-bold" style={{ color: 'var(--soil-dark)' }}>
+        <h4 className="font-serif text-xl font-bold" style={{ color: 'var(--text-primary)' }}>
           {producto.nombre}
         </h4>
         <span className="font-serif italic text-sm mb-3" style={{ color: 'var(--text-muted)' }}>
@@ -74,7 +99,7 @@ const ProductoCard: React.FC<Props> = ({ producto, onAdd, onOpenCart, onDetail }
         {producto.stock !== undefined && producto.stock > 0 && (
           <span
             className="inline-flex items-center gap-2 text-xs font-bold rounded-full px-4 py-1.5 mb-3 w-fit"
-            style={{ background: '#ffebee', color: '#c62828', letterSpacing: '0.5px' }}
+            style={{ background: 'rgba(200, 50, 50, 0.08)', color: '#c62828', border: '1px solid rgba(200, 50, 50, 0.15)' }}
           >
             <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: '#c62828' }} />
             Solo {producto.stock} {producto.stock === 1 ? 'unidad' : 'unidades'} disponible{producto.stock === 1 ? '' : 's'}
@@ -104,7 +129,7 @@ const ProductoCard: React.FC<Props> = ({ producto, onAdd, onOpenCart, onDetail }
         {producto.estado === 'disponible' ? (
           <button
             onClick={handleAdd}
-            className="flex items-center justify-center gap-2 py-3.5 rounded-lg text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5"
+            className="flex items-center justify-center gap-2 py-3.5 rounded-lg text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg active:scale-95"
             style={{ background: 'linear-gradient(135deg, var(--leaf), var(--leaf-dark))' }}
           >
             <Plus size={16} />
@@ -113,8 +138,8 @@ const ProductoCard: React.FC<Props> = ({ producto, onAdd, onOpenCart, onDetail }
         ) : (
           <button
             onClick={handleConsult}
-            className="flex items-center justify-center gap-2 py-3.5 rounded-lg text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5"
-            style={{ background: '#9e9e9e' }}
+            className="flex items-center justify-center gap-2 py-3.5 rounded-lg text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 active:scale-95"
+            style={{ background: 'var(--text-muted)' }}
           >
             <MessageCircle size={16} />
             Consultar disponibilidad

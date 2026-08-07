@@ -1,6 +1,6 @@
 import React from 'react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, Monitor } from 'lucide-react';
 
 const BitCriollo: React.FC = () => {
   const ref = useScrollAnimation({ y: 30, duration: 0.8 });
@@ -27,6 +27,10 @@ const BitCriollo: React.FC = () => {
       />
 
       <div className="relative max-w-[600px] mx-auto">
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 text-xs font-mono uppercase tracking-widest" style={{ background: 'rgba(0, 212, 170, 0.1)', border: '1px solid rgba(0, 212, 170, 0.2)', color: '#00d4aa' }}>
+          <Monitor size={14} />
+          Servicio hermano
+        </div>
         <h2 className="font-serif text-3xl font-bold mb-4" style={{ color: 'var(--white)' }}>
           ¿Tu PC o celular necesita ayuda?
         </h2>
@@ -40,7 +44,7 @@ const BitCriollo: React.FC = () => {
           href="https://bitcriollo.pages.dev"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 px-8 py-4 rounded-md font-bold text-sm transition-all duration-300 hover:-translate-y-0.5"
+          className="inline-flex items-center gap-2 px-8 py-4 rounded-md font-bold text-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg active:scale-95"
           style={{
             background: 'linear-gradient(135deg, #00d4aa, #00b894)',
             color: '#1a1a2e',

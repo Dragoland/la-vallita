@@ -12,9 +12,17 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({ label, title, subtitle, d
   const ref = useScrollAnimation({ y: 40, duration: 0.8 });
 
   return (
-    <div ref={ref} className="text-center mb-14">
+    <div ref={ref} className="text-center mb-14 relative">
+      {/* Decorative side lines on large screens */}
+      <div className="hidden lg:block absolute left-0 right-0 top-1/2 -translate-y-1/2 pointer-events-none">
+        <div className="max-w-[1200px] mx-auto flex items-center justify-between px-8">
+          <div className="h-px w-24 opacity-30" style={{ background: 'linear-gradient(90deg, transparent, var(--wheat))' }} />
+          <div className="h-px w-24 opacity-30" style={{ background: 'linear-gradient(90deg, var(--wheat), transparent)' }} />
+        </div>
+      </div>
+
       <span
-        className="inline-block font-mono text-xs font-medium uppercase tracking-[3px] mb-4"
+        className="relative inline-block font-mono text-xs font-medium uppercase tracking-[3px] mb-4 px-4"
         style={{ color: dark ? 'var(--wheat)' : 'var(--leaf)' }}
       >
         {label}

@@ -4,7 +4,7 @@ import SectionHeader from '@/components/SectionHeader';
 import ConsejoCard from '@/components/ConsejoCard';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useConsejos } from '@/hooks/useConsejos';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, BookOpen } from 'lucide-react';
 
 const meses = [
   'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
@@ -23,7 +23,7 @@ const Consejos: React.FC = () => {
     .slice(0, 4);
 
   return (
-    <section id="consejos" style={{ background: 'var(--cream)', padding: '6rem 1.5rem' }}>
+    <section id="consejos" style={{ background: 'var(--bg-primary)', padding: '6rem 1.5rem' }}>
       <div className="max-w-[1200px] mx-auto">
         <SectionHeader
           label="Aprende con nosotros"
@@ -47,9 +47,10 @@ const Consejos: React.FC = () => {
             <div className="text-center mt-10">
               <button
                 onClick={() => navigate('/consejos')}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5 text-white"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5 text-white hover:shadow-lg active:scale-95"
                 style={{ background: 'linear-gradient(135deg, var(--leaf), var(--leaf-dark))' }}
               >
+                <BookOpen size={16} />
                 Ver más consejos para {meses[mesActual - 1].toLowerCase()}
                 <ArrowRight size={16} />
               </button>

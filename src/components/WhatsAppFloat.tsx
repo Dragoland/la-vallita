@@ -8,7 +8,7 @@ export const WhatsAppFloat: React.FC = () => {
   return (
     <button
       onClick={() => navigate('/contacto')}
-      className="fixed right-5 z-[1000] w-14 h-14 rounded-full flex items-center justify-center text-white shadow-lg transition-all duration-300 hover:scale-110 hover:-translate-y-1"
+      className="fixed right-5 z-[1000] w-14 h-14 rounded-full flex items-center justify-center text-white shadow-lg transition-all duration-300 hover:scale-110 hover:-translate-y-1 active:scale-95"
       style={{
         bottom: '5.5rem',
         background: 'linear-gradient(135deg, #25D366, #128C7E)',

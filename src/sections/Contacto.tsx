@@ -1,31 +1,32 @@
 import React from 'react';
 import SectionHeader from '@/components/SectionHeader';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { Phone, MessageCircle, Wrench, User } from 'lucide-react';
 
 const contactos = [
   {
-    icon: 'T',
+    icon: Phone,
     title: 'Teléfono fijo',
     desc: 'Llamada directa a la finca',
     link: 'tel:+5342861589',
     label: '42 861 589',
   },
   {
-    icon: 'W',
+    icon: MessageCircle,
     title: 'WhatsApp principal',
     desc: 'Pedidos y atención',
     link: 'https://wa.me/5355406632?text=Hola%2C%20vi%20el%20sitio%20de%20La%20Vallita%20y%20me%20interesa%20consultar.',
     label: '+53 5 5406632',
   },
   {
-    icon: 'A',
+    icon: Wrench,
     title: 'ArregloLinuxero',
     desc: 'Soporte web y técnico',
     link: 'https://wa.me/5356418463?text=Hola%20ArregloLinuxero%2C%20tengo%20una%20duda%20sobre%20el%20sitio%20de%20La%20Vallita.',
     label: '+53 5 6418463',
   },
   {
-    icon: 'R',
+    icon: User,
     title: 'Contacto secundario',
     desc: 'Respaldo cuando no haya cobertura',
     link: 'https://wa.me/5356850969?text=Hola%2C%20vi%20el%20sitio%20de%20La%20Vallita.',
@@ -54,47 +55,50 @@ const Contacto: React.FC = () => {
         />
 
         <div ref={ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-8">
-          {contactos.map((c) => (
-            <a
-              key={c.title}
-              href={c.link}
-              target={c.link.startsWith('http') ? '_blank' : undefined}
-              rel={c.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-              className="block text-center p-6 lg:p-8 rounded-xl transition-all duration-300 hover:-translate-y-1"
-              style={{
-                background: 'rgba(255,255,255,0.06)',
-                border: '1px solid rgba(255,255,255,0.12)',
-              }}
-            >
-              <div
-                className="w-[50px] h-[50px] rounded-full flex items-center justify-center mx-auto mb-4 font-serif font-bold text-lg"
+          {contactos.map((c) => {
+            const Icon = c.icon;
+            return (
+              <a
+                key={c.title}
+                href={c.link}
+                target={c.link.startsWith('http') ? '_blank' : undefined}
+                rel={c.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                className="block text-center p-6 lg:p-8 rounded-xl transition-all duration-300 hover:-translate-y-1 group"
                 style={{
-                  background: 'rgba(201, 168, 76, 0.15)',
-                  color: 'var(--wheat)',
+                  background: 'rgba(255,255,255,0.05)',
+                  border: '1px solid rgba(255,255,255,0.1)',
                 }}
               >
-                {c.icon}
-              </div>
-              <h4
-                className="font-serif text-lg font-bold mb-1"
-                style={{ color: 'var(--white)' }}
-              >
-                {c.title}
-              </h4>
-              <p
-                className="text-sm mb-2"
-                style={{ color: 'rgba(255,255,255,0.75)' }}
-              >
-                {c.desc}
-              </p>
-              <span
-                className="text-base font-semibold hover:underline"
-                style={{ color: 'var(--wheat)' }}
-              >
-                {c.label}
-              </span>
-            </a>
-          ))}
+                <div
+                  className="w-[50px] h-[50px] rounded-full flex items-center justify-center mx-auto mb-4 transition-transform duration-300 group-hover:scale-110"
+                  style={{
+                    background: 'rgba(201, 168, 76, 0.15)',
+                    color: 'var(--wheat)',
+                  }}
+                >
+                  <Icon size={22} />
+                </div>
+                <h4
+                  className="font-serif text-lg font-bold mb-1"
+                  style={{ color: 'var(--white)' }}
+                >
+                  {c.title}
+                </h4>
+                <p
+                  className="text-sm mb-2"
+                  style={{ color: 'rgba(255,255,255,0.75)' }}
+                >
+                  {c.desc}
+                </p>
+                <span
+                  className="text-base font-semibold hover:underline"
+                  style={{ color: 'var(--wheat)' }}
+                >
+                  {c.label}
+                </span>
+              </a>
+            );
+          })}
         </div>
 
         {/* Note */}

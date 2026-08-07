@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Plus, Minus, Trash2, ShoppingCart, MessageCircle } from 'lucide-react';
+import { X, Plus, Minus, Trash2, ShoppingCart, MessageCircle, Package } from 'lucide-react';
 import type { Producto } from '@/types';
 
 interface CarritoHook {
@@ -33,21 +33,34 @@ const CarritoSidebar: React.FC<Props> = ({ carrito }) => {
   return (
     <>
       <div
-        className={`fixed inset-0 bg-black/30 z-[998] transition-opacity duration-300 ${abierto ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+        className={`fixed inset-0 z-[998] transition-opacity duration-300 ${abierto ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+        style={{ background: 'rgba(0,0,0,0.4)', backdropFilter: 'blur(4px)' }}
         onClick={() => setAbierto(false)}
       />
 
       <aside
-        className={`fixed top-0 right-0 h-full w-full max-w-md bg-white z-[999] shadow-2xl transition-transform duration-300 ease-out flex flex-col ${abierto ? 'translate-x-0' : 'translate-x-full'}`}
-        style={{ borderLeft: '1px solid rgba(139,105,20,0.1)' }}
+        className={`fixed top-0 right-0 h-full w-full max-w-md z-[999] shadow-2xl transition-transform duration-300 ease-out flex flex-col ${abierto ? 'translate-x-0' : 'translate-x-full'}`}
+        style={{ 
+          background: 'var(--bg-card)', 
+          borderLeft: '1px solid var(--border-color)',
+        }}
       >
-        <div className="flex items-center justify-between p-6 border-b" style={{ borderColor: 'rgba(139,105,20,0.1)' }}>
+        <div className="flex items-center justify-between p-6 border-b" style={{ borderColor: 'var(--border-color)' }}>
           <div className="flex items-center gap-3">
             <ShoppingCart size={20} style={{ color: 'var(--leaf)' }} />
             <h2 className="font-serif text-xl font-bold" style={{ color: 'var(--soil-dark)' }}>Tu pedido</h2>
-            <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-green-100 text-green-800">{totalItems} items</span>
+            <span 
+              className="text-xs font-mono px-2 py-0.5 rounded-full"
+              style={{ background: 'rgba(74, 124, 46, 0.1)', color: 'var(--leaf)' }}
+            >
+              {totalItems} items
+            </span>
           </div>
-          <button onClick={() => setAbierto(false)} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
+          <button 
+            onClick={() => setAbierto(false)} 
+            className="p-2 rounded-full transition-colors duration-200 hover:bg-gray-100"
+            style={{ color: 'var(--text-muted)' }}
+          >
             <X size={20} />
           </button>
         </div>
@@ -55,30 +68,53 @@ const CarritoSidebar: React.FC<Props> = ({ carrito }) => {
         <div className="flex-1 overflow-y-auto p-6 space-y-4">
           {items.length === 0 ? (
             <div className="text-center py-12">
-              <ShoppingCart size={48} className="mx-auto mb-4 text-gray-300" />
-              <p className="text-gray-500">El carrito está vacío</p>
-              <p className="text-sm text-gray-400 mt-1">Explora el catálogo y añade plantas</p>
+              <Package size={48} className="mx-auto mb-4" style={{ color: 'var(--text-muted)', opacity: 0.5 }} />
+              <p style={{ color: 'var(--text-muted)' }}>El carrito está vacío</p>
+              <p className="text-sm mt-1" style={{ color: 'var(--text-soft)', opacity: 0.7 }}>Explora el catálogo y añade plantas</p>
             </div>
           ) : (
             items.map((item) => (
-              <div key={item.slug} className="flex gap-4 p-4 rounded-xl bg-cream/50 border border-transparent hover:border-[var(--wheat)]/30 transition-colors">
+              <div 
+                key={item.slug} 
+                className="flex gap-4 p-4 rounded-xl transition-all duration-200 hover:shadow-md"
+                style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border-color)' }}
+              >
                 <div className="flex-1">
                   <div className="flex justify-between items-start">
                     <h4 className="font-serif font-bold text-sm" style={{ color: 'var(--soil-dark)' }}>{item.nombre}</h4>
-                    <button onClick={() => eliminar(item.slug)} className="text-gray-400 hover:text-red-500 transition-colors">
+                    <button 
+                      onClick={() => eliminar(item.slug)} 
+                      className="p-1 rounded transition-colors duration-200 hover:bg-red-50 hover:text-red-500"
+                      style={{ color: 'var(--text-muted)' }}
+                    >
                       <Trash2 size={14} />
                     </button>
                   </div>
-                  <p className="text-xs text-gray-500 mt-0.5">{item.unidad} · {item.estado}</p>
+                  <p className="text-xs mt-0.5" style={{ color: 'var(--text-muted)' }}>{item.unidad} · {item.estado}</p>
                   <div className="flex items-center justify-between mt-3">
-                    <div className="flex items-center gap-2 bg-white rounded-lg border px-2 py-1" style={{ borderColor: 'rgba(139,105,20,0.15)' }}>
-                      <button onClick={() => quitar(item.slug)} className="p-1 hover:text-red-500 transition-colors"><Minus size={14} /></button>
-                      <span className="text-sm font-semibold w-4 text-center">{item.cantidad}</span>
-                      <button onClick={() => agregar(item)} className="p-1 hover:text-green-600 transition-colors"><Plus size={14} /></button>
+                    <div 
+                      className="flex items-center gap-2 rounded-lg border px-2 py-1" 
+                      style={{ borderColor: 'var(--border-color)', background: 'var(--bg-card)' }}
+                    >
+                      <button 
+                        onClick={() => quitar(item.slug)} 
+                        className="p-1 rounded transition-colors duration-200 hover:text-red-500"
+                        style={{ color: 'var(--text-muted)' }}
+                      >
+                        <Minus size={14} />
+                      </button>
+                      <span className="text-sm font-semibold w-4 text-center" style={{ color: 'var(--text-primary)' }}>{item.cantidad}</span>
+                      <button 
+                        onClick={() => agregar(item)} 
+                        className="p-1 rounded transition-colors duration-200 hover:text-green-600"
+                        style={{ color: 'var(--text-muted)' }}
+                      >
+                        <Plus size={14} />
+                      </button>
                     </div>
                     <div className="text-right">
                       {item.precio_cup && <div className="text-sm font-bold" style={{ color: 'var(--leaf)' }}>${(item.precio_cup * item.cantidad)} CUP</div>}
-                      {item.precio_mlc && <div className="text-xs text-gray-500">${(item.precio_mlc * item.cantidad).toFixed(2)} MLC</div>}
+                      {item.precio_mlc && <div className="text-xs" style={{ color: 'var(--text-muted)' }}>${(item.precio_mlc * item.cantidad).toFixed(2)} MLC</div>}
                     </div>
                   </div>
                 </div>
@@ -88,32 +124,39 @@ const CarritoSidebar: React.FC<Props> = ({ carrito }) => {
         </div>
 
         {items.length > 0 && (
-          <div className="p-6 border-t space-y-4" style={{ borderColor: 'rgba(139,105,20,0.1)', background: 'var(--cream)' }}>
+          <div className="p-6 border-t space-y-4" style={{ borderColor: 'var(--border-color)', background: 'var(--bg-secondary)' }}>
             <div className="space-y-1">
               <div className="flex justify-between text-sm">
-                <span className="text-gray-600">Subtotal CUP</span>
-                <span className="font-semibold">${totalCup}</span>
+                <span style={{ color: 'var(--text-muted)' }}>Subtotal CUP</span>
+                <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>${totalCup}</span>
               </div>
               {totalMlc > 0 && (
                 <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Subtotal MLC</span>
-                  <span className="font-semibold">${totalMlc.toFixed(2)}</span>
+                  <span style={{ color: 'var(--text-muted)' }}>Subtotal MLC</span>
+                  <span className="font-semibold" style={{ color: 'var(--text-primary)' }}>${totalMlc.toFixed(2)}</span>
                 </div>
               )}
-              <div className="flex justify-between font-bold text-lg pt-2 border-t" style={{ borderColor: 'rgba(139,105,20,0.15)', color: 'var(--soil-dark)' }}>
+              <div 
+                className="flex justify-between font-bold text-lg pt-2 border-t" 
+                style={{ borderColor: 'var(--border-color)', color: 'var(--soil-dark)' }}
+              >
                 <span>Total plantas</span>
                 <span>{totalItems}</span>
               </div>
             </div>
             <button
               onClick={handlePedido}
-              className="w-full flex items-center justify-center gap-2 py-3.5 rounded-lg font-bold text-sm text-white transition-all duration-300 hover:-translate-y-0.5"
+              className="w-full flex items-center justify-center gap-2 py-3.5 rounded-lg font-bold text-sm text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg active:scale-95"
               style={{ background: 'linear-gradient(135deg, #25D366, #128C7E)' }}
             >
               <MessageCircle size={16} />
               Generar pedido por WhatsApp
             </button>
-            <button onClick={vaciar} className="w-full text-xs text-gray-500 hover:text-red-500 transition-colors py-2">
+            <button 
+              onClick={vaciar} 
+              className="w-full text-xs transition-colors duration-200 py-2 rounded hover:text-red-500"
+              style={{ color: 'var(--text-muted)' }}
+            >
               Vaciar carrito
             </button>
           </div>

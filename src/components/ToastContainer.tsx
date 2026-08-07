@@ -8,10 +8,10 @@ const icons = {
   info: Info,
 };
 
-const colors: Record<Toast['type'], { bg: string; border: string }> = {
-  success: { bg: '#4a7c2e', border: '#6b9e3e' },
-  error: { bg: '#b8653c', border: '#d4835a' },
-  info: { bg: '#3d2914', border: '#6b4423' },
+const colors: Record<Toast['type'], { bg: string; border: string; glow: string }> = {
+  success: { bg: '#4a7c2e', border: '#6b9e3e', glow: 'rgba(74, 124, 46, 0.3)' },
+  error: { bg: '#b8653c', border: '#d4835a', glow: 'rgba(184, 101, 60, 0.3)' },
+  info: { bg: '#3d2914', border: '#6b4423', glow: 'rgba(61, 41, 20, 0.3)' },
 };
 
 export const ToastContainer: React.FC = () => {
@@ -31,11 +31,11 @@ export const ToastContainer: React.FC = () => {
         return (
           <div
             key={toast.id}
-            className="pointer-events-auto flex items-center gap-3 px-5 py-3.5 rounded-xl text-white text-sm font-medium shadow-lg"
+            className="pointer-events-auto flex items-center gap-3 px-5 py-3.5 rounded-xl text-white text-sm font-medium"
             style={{
               background: color.bg,
               border: `1px solid ${color.border}`,
-              boxShadow: '0 10px 30px rgba(44,36,22,0.2)',
+              boxShadow: `0 10px 30px ${color.glow}`,
               minWidth: '280px',
               maxWidth: '90vw',
               animation: 'toastSlideUp 0.3s ease-out',

@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router';
 import { useSmoothScroll } from '@/hooks/useSmoothScroll';
 import { useCarrito } from '@/hooks/useCarrito';
+import { useTheme } from '@/hooks/useTheme';
 import Navbar from '@/sections/Navbar';
 import Footer from '@/sections/Footer';
 import CarritoSidebar from '@/components/CarritoSidebar';
@@ -16,10 +17,11 @@ import Especiales from '@/sections/Especiales';
 
 export default function App() {
   useSmoothScroll();
+  useTheme();
   const carrito = useCarrito();
 
   return (
-    <div className="min-h-screen" style={{ background: 'var(--cream)' }}>
+    <div className="min-h-screen" style={{ background: 'var(--bg-primary)' }}>
       <Navbar carrito={carrito} />
       <CarritoSidebar carrito={carrito} />
       <main className="pb-16 lg:pb-0">

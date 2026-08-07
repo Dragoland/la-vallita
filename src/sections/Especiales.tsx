@@ -18,9 +18,8 @@ const Especiales: React.FC<Props> = ({ onAdd, onOpenCart }) => {
   const navigate = useNavigate();
 
   return (
-    <section style={{ background: 'var(--cream)', padding: '6rem 1.5rem', minHeight: '100vh' }}>
+    <section style={{ background: 'var(--bg-primary)', padding: '6rem 1.5rem', minHeight: '100vh' }}>
       <div className="max-w-[1200px] mx-auto">
-        {/* Back button */}
         <button
           onClick={() => navigate('/')}
           className="inline-flex items-center gap-2 mb-8 text-sm font-medium transition-colors duration-300 hover:opacity-70"
@@ -36,7 +35,6 @@ const Especiales: React.FC<Props> = ({ onAdd, onOpenCart }) => {
           subtitle="Plantas raras, variedades de legado y unidades de stock limitado. Cuando se agotan, desaparecen."
         />
 
-        {/* Decorative banner */}
         <div
           className="mx-auto max-w-3xl text-center rounded-xl px-6 py-4 mb-10"
           style={{
@@ -64,7 +62,7 @@ const Especiales: React.FC<Props> = ({ onAdd, onOpenCart }) => {
           </div>
         ) : especiales.length === 0 ? (
           <div className="text-center py-16">
-            <span className="text-6xl mb-4 block">🌱</span>
+            <span className="text-6xl mb-4 block animate-float">🌱</span>
             <p className="text-xl font-serif mb-3" style={{ color: 'var(--soil-dark)' }}>
               No hay productos especiales disponibles
             </p>
@@ -74,7 +72,7 @@ const Especiales: React.FC<Props> = ({ onAdd, onOpenCart }) => {
             </p>
             <button
               onClick={() => navigate('/')}
-              className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5"
+              className="mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 active:scale-95"
               style={{ background: 'linear-gradient(135deg, var(--leaf), var(--leaf-dark))' }}
             >
               Ver catálogo general
@@ -96,7 +94,7 @@ const Especiales: React.FC<Props> = ({ onAdd, onOpenCart }) => {
 
         <div
           className="mt-12 mx-auto max-w-2xl text-center rounded-xl px-6 py-5"
-          style={{ background: 'var(--parchment)', border: '1px dashed var(--soil-light)' }}
+          style={{ background: 'var(--bg-secondary)', border: '1px dashed var(--soil-light)' }}
         >
           <p className="text-sm" style={{ color: 'var(--text-soft)' }}>
             <strong className="font-serif" style={{ color: 'var(--soil-dark)' }}>

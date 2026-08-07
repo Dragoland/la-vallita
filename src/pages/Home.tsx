@@ -1,10 +1,9 @@
-import { useEffect } from 'react';
-import { useLocation } from 'react-router';
+import AnuncioFeria from '@/sections/AnuncioFeria';
 import Hero from '@/sections/Hero';
-import AnuncioFeria from '@/sections/AnuncioFeria';  // ← NUEVO
 import Catalogo from '@/sections/Catalogo';
 import Consejos from '@/sections/Consejos';
 import BitCriollo from '@/sections/BitCriollo';
+import type { Producto } from '@/types';
 import type { useCarrito } from '@/hooks/useCarrito';
 
 interface Props {
@@ -12,22 +11,13 @@ interface Props {
 }
 
 export default function Home({ carrito }: Props) {
-  const { hash } = useLocation();
-
-  useEffect(() => {
-    if (hash) {
-      const el = document.querySelector(hash);
-      if (el) setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 100);
-    }
-  }, [hash]);
-
   return (
-    <main>
-    <Hero />
-    <AnuncioFeria />
-    <Catalogo onAdd={carrito.agregar} onOpenCart={() => carrito.setAbierto(true)} />
-    <Consejos />
-    <BitCriollo />
-    </main>
+    <>
+      <AnuncioFeria />
+      <Hero />
+      <Catalogo onAdd={carrito.agregar} onOpenCart={() => carrito.setAbierto(true)} />
+      <Consejos />
+      <BitCriollo />
+    </>
   );
 }

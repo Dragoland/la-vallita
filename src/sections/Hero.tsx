@@ -16,6 +16,28 @@ const LeafSVG: React.FC<{ className?: string; style?: React.CSSProperties }> = (
   </svg>
 );
 
+const FloatingLeaf: React.FC<{ 
+  size: number; 
+  top: string; 
+  left?: string; 
+  right?: string; 
+  delay: number;
+  reverse?: boolean;
+}> = ({ size, top, left, right, delay, reverse }) => (
+  <LeafSVG 
+    className={`absolute pointer-events-none text-white ${reverse ? 'animate-float-reverse' : 'animate-float'}`}
+    style={{ 
+      top, 
+      left, 
+      right, 
+      width: size, 
+      opacity: 0.06,
+      animationDelay: `${delay}s`,
+      zIndex: 2 
+    }} 
+  />
+);
+
 const Hero: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
 
@@ -87,9 +109,30 @@ const Hero: React.FC = () => {
         }}
       />
 
-      <LeafSVG className="absolute opacity-[0.06] pointer-events-none text-white" style={{ top: '10%', right: '5%', width: '180px', transform: 'rotate(15deg)', zIndex: 2 }} />
-      <LeafSVG className="absolute opacity-[0.06] pointer-events-none text-white" style={{ bottom: '5%', left: '3%', width: '140px', transform: 'rotate(-20deg) scaleX(-1)', zIndex: 2 }} />
-      <LeafSVG className="absolute opacity-[0.04] pointer-events-none text-white" style={{ top: '40%', left: '8%', width: '100px', transform: 'rotate(45deg)', zIndex: 2 }} />
+      {/* Decorative pattern overlay */}
+      <div 
+        className="absolute inset-0 pointer-events-none bg-texture-dots" 
+        style={{ zIndex: 1 }} 
+      />
+
+      {/* Floating leaves with animation */}
+      <FloatingLeaf size={180} top="10%" right="5%" delay={0} />
+      <FloatingLeaf size={140} top="60%" left="3%" delay={1.5} reverse />
+      <FloatingLeaf size={100} top="40%" left="8%" delay={0.8} />
+      <FloatingLeaf size={80} top="20%" left="15%" delay={2} reverse />
+      <FloatingLeaf size={120} top="70%" right="10%" delay={1} />
+      <FloatingLeaf size={60} top="15%" left="40%" delay={2.5} reverse />
+
+      {/* Bottom decorative wave */}
+      <div className="absolute bottom-0 left-0 right-0 pointer-events-none" style={{ zIndex: 2 }}>
+        <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
+          <path 
+            d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" 
+            fill="var(--bg-primary)"
+            className="transition-colors duration-500"
+          />
+        </svg>
+      </div>
 
       <div className="relative max-w-[900px] mx-auto" style={{ zIndex: 3 }}>
         <div
@@ -104,11 +147,13 @@ const Hero: React.FC = () => {
         <div
           className="hero-badge inline-flex items-center gap-2 px-5 py-2 rounded-full mb-8 font-mono text-xs font-semibold uppercase tracking-widest"
           style={{
-            background: 'rgba(201, 168, 76, 0.12)',
+            background: 'rgba(201, 168, 76, 0.15)',
             color: 'var(--wheat)',
             border: '1px solid var(--wheat)',
+            backdropFilter: 'blur(4px)',
           }}
         >
+          <span className="w-1.5 h-1.5 rounded-full bg-[var(--wheat)] animate-pulse" />
           Quinta Corona de Excelencia Nacional — Finca Agrovida
         </div>
 
@@ -137,8 +182,8 @@ const Hero: React.FC = () => {
 
         <div className="flex flex-wrap justify-center gap-10 mb-10">
           {stats.map((stat) => (
-            <div key={stat.label} className="hero-stat text-center">
-              <span className="block font-serif font-extrabold leading-none" style={{ fontSize: '2.2rem', color: 'var(--wheat)' }}>
+            <div key={stat.label} className="hero-stat text-center group cursor-default">
+              <span className="block font-serif font-extrabold leading-none transition-transform duration-300 group-hover:scale-110" style={{ fontSize: '2.2rem', color: 'var(--wheat)' }}>
                 {stat.num}
               </span>
               <span className="text-xs uppercase tracking-widest" style={{ color: 'rgba(255,255,255,0.7)' }}>
@@ -151,10 +196,11 @@ const Hero: React.FC = () => {
         <div className="hero-cta flex flex-wrap justify-center gap-4">
           <Link
             to="/#catalogo"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-md font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-md font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
             style={{
               background: 'linear-gradient(135deg, var(--wheat), var(--wheat-dark))',
               color: 'var(--soil-dark)',
+              boxShadow: '0 4px 15px rgba(201, 168, 76, 0.3)',
             }}
           >
             Ver plantas disponibles
@@ -163,7 +209,7 @@ const Hero: React.FC = () => {
             href="https://wa.me/5355406632?text=Hola%2C%20vi%20el%20sitio%20de%20La%20Vallita%20y%20me%20interesa%20consultar%20sobre%20plantas."
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-md font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-md font-semibold text-sm transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/15"
             style={{
               background: 'rgba(255,255,255,0.08)',
               color: 'var(--white)',

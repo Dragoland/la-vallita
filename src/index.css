@@ -2,53 +2,98 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================
+   THEME SYSTEM — La Vallita
+   ============================================================ */
+
+[data-theme="agricultural"] {
+  --soil-dark: #3d2914;
+  --soil: #6b4423;
+  --soil-light: #8b6914;
+  --leaf-dark: #2d5016;
+  --leaf: #4a7c2e;
+  --leaf-light: #6b9e3e;
+  --cream: #faf7f2;
+  --parchment: #f5f0e8;
+  --parchment-dark: #ebe5d8;
+  --wheat: #c9a84c;
+  --wheat-dark: #a88a3a;
+  --terracotta: #b8653c;
+  --terracotta-light: #d4835a;
+  --sky: #87a878;
+  --text-primary: #2c2416;
+  --text-soft: #5c4d35;
+  --text-muted: #8b7d6b;
+  --white: #ffffff;
+  --shadow: rgba(44, 36, 22, 0.06);
+  --shadow-strong: rgba(44, 36, 22, 0.12);
+  --bg-primary: #faf7f2;
+  --bg-secondary: #f5f0e8;
+  --bg-card: #ffffff;
+  --bg-elevated: #ffffff;
+  --border-color: rgba(139, 105, 20, 0.12);
+  --overlay: rgba(61, 41, 20, 0.88);
+}
+
+[data-theme="dark"] {
+  --soil-dark: #0f0e0c;
+  --soil: #3d2914;
+  --soil-light: #6b4423;
+  --leaf-dark: #1a3a0a;
+  --leaf: #5a9e3e;
+  --leaf-light: #7bc052;
+  --cream: #0f0e0c;
+  --parchment: #1a1814;
+  --parchment-dark: #252320;
+  --wheat: #d4a843;
+  --wheat-dark: #b8922e;
+  --terracotta: #c97b5a;
+  --terracotta-light: #e09b7a;
+  --sky: #5a8a4e;
+  --text-primary: #f0e6d3;
+  --text-soft: #c4b8a5;
+  --text-muted: #8b7d6b;
+  --white: #1a1814;
+  --shadow: rgba(0, 0, 0, 0.3);
+  --shadow-strong: rgba(0, 0, 0, 0.5);
+  --bg-primary: #0f0e0c;
+  --bg-secondary: #1a1814;
+  --bg-card: #252320;
+  --bg-elevated: #2e2c28;
+  --border-color: rgba(201, 168, 76, 0.12);
+  --overlay: rgba(0, 0, 0, 0.85);
+}
+
+[data-theme="light"] {
+  --soil-dark: #2c2416;
+  --soil: #5c4d35;
+  --soil-light: #8b7d6b;
+  --leaf-dark: #2d5016;
+  --leaf: #4a7c2e;
+  --leaf-light: #6b9e3e;
+  --cream: #ffffff;
+  --parchment: #f8f9fa;
+  --parchment-dark: #e9ecef;
+  --wheat: #b8941f;
+  --wheat-dark: #9a7b1a;
+  --terracotta: #a0522d;
+  --terracotta-light: #c17a53;
+  --sky: #6b9e3e;
+  --text-primary: #1a1a1a;
+  --text-soft: #4a4a4a;
+  --text-muted: #6c757d;
+  --white: #ffffff;
+  --shadow: rgba(0, 0, 0, 0.05);
+  --shadow-strong: rgba(0, 0, 0, 0.1);
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-card: #ffffff;
+  --bg-elevated: #ffffff;
+  --border-color: rgba(0, 0, 0, 0.08);
+  --overlay: rgba(44, 36, 22, 0.75);
+}
+
 @layer base {
-  :root {
-    /* La Vallita color palette */
-    --soil-dark: #3d2914;
-    --soil: #6b4423;
-    --soil-light: #8b6914;
-    --leaf-dark: #2d5016;
-    --leaf: #4a7c2e;
-    --leaf-light: #6b9e3e;
-    --cream: #faf7f2;
-    --parchment: #f5f0e8;
-    --parchment-dark: #ebe5d8;
-    --wheat: #c9a84c;
-    --wheat-dark: #a88a3a;
-    --terracotta: #b8653c;
-    --terracotta-light: #d4835a;
-    --sky: #87a878;
-    --text-primary: #2c2416;
-    --text-soft: #5c4d35;
-    --text-muted: #8b7d6b;
-    --white: #ffffff;
-    --shadow: rgba(44, 36, 22, 0.06);
-    --shadow-strong: rgba(44, 36, 22, 0.12);
-
-    /* shadcn compatibility */
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 5.9% 10%;
-    --radius: 0.625rem;
-  }
-
   * {
     @apply border-border;
     margin: 0;
@@ -62,12 +107,13 @@
 
   body {
     font-family: 'Inter', sans-serif;
-    background: var(--cream);
+    background: var(--bg-primary);
     color: var(--text-primary);
     line-height: 1.7;
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.5s ease, color 0.5s ease;
   }
 
   img {
@@ -80,7 +126,76 @@
     color: var(--leaf);
     text-decoration: none;
   }
+
+  /* Smooth theme transitions for all themed elements */
+  *, *::before, *::after {
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--soil-light);
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--wheat);
+  }
 }
+
+/* ============================================================
+   DECORATIVE UTILITIES
+   ============================================================ */
+
+@layer utilities {
+  .bg-texture-dots {
+    background-image: radial-gradient(circle, var(--soil-light) 1px, transparent 1px);
+    background-size: 24px 24px;
+    opacity: 0.04;
+  }
+
+  .bg-texture-leaves {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 5 Q10 30 30 55 Q50 30 30 5' fill='none' stroke='%234a7c2e' stroke-width='0.5' opacity='0.06'/%3E%3C/svg%3E");
+  }
+
+  .bg-texture-grain {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  }
+
+  .text-gradient-wheat {
+    background: linear-gradient(135deg, var(--wheat), var(--terracotta-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .border-gradient-wheat {
+    border-image: linear-gradient(135deg, var(--wheat), var(--leaf)) 1;
+  }
+
+  .glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .card-hover {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px var(--shadow-strong);
+  }
+}
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
 
 @keyframes toastSlideUp {
   from {
@@ -103,4 +218,76 @@
   100% {
     box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
   }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(3deg); }
+}
+
+@keyframes floatReverse {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(-3deg); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes leafSway {
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: floatReverse 7s ease-in-out infinite;
+}
+
+.animate-leaf-sway {
+  animation: leafSway 4s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+/* shadcn compatibility */
+:root {
+  --background: 0 0% 100%;
+  --foreground: 240 10% 3.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 3.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 3.9%;
+  --primary: 240 5.9% 10%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 240 4.8% 95.9%;
+  --secondary-foreground: 240 5.9% 10%;
+  --muted: 240 4.8% 95.9%;
+  --muted-foreground: 240 3.8% 46.1%;
+  --accent: 240 4.8% 95.9%;
+  --accent-foreground: 240 5.9% 10%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 5.9% 90%;
+  --input: 240 5.9% 90%;
+  --ring: 240 5.9% 10%;
+  --radius: 0.625rem;
 }

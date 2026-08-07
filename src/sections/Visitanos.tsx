@@ -1,6 +1,7 @@
 import React from 'react';
 import SectionHeader from '@/components/SectionHeader';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { MapPin, Clock, Navigation } from 'lucide-react';
 
 const Visitanos: React.FC = () => {
   const mapRef = useScrollAnimation({ y: 40, duration: 0.8 });
@@ -10,7 +11,7 @@ const Visitanos: React.FC = () => {
     <section
       id="visitanos"
       className="relative"
-      style={{ background: 'var(--parchment)', padding: '6rem 1.5rem' }}
+      style={{ background: 'var(--bg-secondary)', padding: '6rem 1.5rem' }}
     >
       {/* Top border line */}
       <div
@@ -34,7 +35,7 @@ const Visitanos: React.FC = () => {
             className="relative rounded-2xl overflow-hidden mb-8"
             style={{
               boxShadow: '0 8px 30px var(--shadow-strong)',
-              border: '1px solid rgba(139, 105, 20, 0.1)',
+              border: '1px solid var(--border-color)',
             }}
           >
             <div
@@ -63,9 +64,10 @@ const Visitanos: React.FC = () => {
               href="https://www.openstreetmap.org/?mlat=22.3554295&mlon=-79.7452053#map=18/22.3554295/-79.7452053"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm font-medium hover:underline"
+              className="inline-flex items-center gap-2 text-sm font-medium hover:underline transition-colors duration-300"
               style={{ color: 'var(--leaf)' }}
             >
+              <Navigation size={14} />
               Ver mapa a pantalla completa
             </a>
           </p>
@@ -74,10 +76,11 @@ const Visitanos: React.FC = () => {
         {/* Info Card */}
         <div
           ref={infoRef}
-          className="bg-white rounded-2xl p-6 lg:p-10"
+          className="rounded-2xl p-6 lg:p-10"
           style={{
+            background: 'var(--bg-card)',
             boxShadow: '0 4px 20px var(--shadow)',
-            border: '1px solid rgba(139, 105, 20, 0.08)',
+            border: '1px solid var(--border-color)',
           }}
         >
           <h3
@@ -90,54 +93,59 @@ const Visitanos: React.FC = () => {
           <ul className="list-none p-0">
             {[
               {
+                icon: MapPin,
                 bold: 'Desde el centro de Placetas:',
                 text: 'Dirección Falcón. A pie, en bicicleta o transporte particular. Aproximadamente 3 km desde el poblado de Falcón.',
               },
               {
+                icon: MapPin,
                 bold: 'Referencia local:',
                 text: 'Asentamiento La Vallita, Consejo Popular Falcón, zona agrícola de Placetas. Enclavada en áreas de la CCS Fortalecida Antonio Duménigo.',
               },
               {
+                icon: Navigation,
                 bold: 'Ubicación exacta:',
                 text: '',
                 link: true,
               },
               {
+                icon: Clock,
                 bold: 'Recomendación:',
                 text: 'Avisar por WhatsApp antes de venir para confirmar que estaremos en la finca.',
               },
-            ].map((item, i) => (
-              <li
-                key={i}
-                className="relative py-4 pl-9 border-b last:border-b-0"
-                style={{ borderColor: 'rgba(139, 105, 20, 0.12)', borderStyle: 'dashed' }}
-              >
-                <span
-                  className="absolute left-0 top-5 w-2.5 h-2.5 rounded-full"
-                  style={{
-                    background: 'var(--wheat)',
-                    boxShadow: '0 0 0 3px rgba(201, 168, 76, 0.2)',
-                  }}
-                />
-                <strong style={{ color: 'var(--soil-dark)' }}>{item.bold}</strong>{' '}
-                {item.link ? (
-                  <>
-                    <a
-                      href="https://www.openstreetmap.org/?mlat=22.3554295&mlon=-79.7452053#map=18/22.3554295/-79.7452053"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-semibold hover:underline"
-                      style={{ color: 'var(--wheat)' }}
-                    >
-                      22.3554295, -79.7452053
-                    </a>{' '}
-                    (Falcón, Placetas, Villa Clara)
-                  </>
-                ) : (
-                  <span style={{ color: 'var(--text-soft)' }}>{item.text}</span>
-                )}
-              </li>
-            ))}
+            ].map((item, i) => {
+              const Icon = item.icon;
+              return (
+                <li
+                  key={i}
+                  className="relative py-4 pl-10 border-b last:border-b-0"
+                  style={{ borderColor: 'var(--border-color)', borderStyle: 'dashed' }}
+                >
+                  <Icon 
+                    size={18} 
+                    className="absolute left-0 top-5" 
+                    style={{ color: 'var(--wheat)' }} 
+                  />
+                  <strong style={{ color: 'var(--soil-dark)' }}>{item.bold}</strong>{' '}
+                  {item.link ? (
+                    <>
+                      <a
+                        href="https://www.openstreetmap.org/?mlat=22.3554295&mlon=-79.7452053#map=18/22.3554295/-79.7452053"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-semibold hover:underline"
+                        style={{ color: 'var(--wheat)' }}
+                      >
+                        22.3554295, -79.7452053
+                      </a>{' '}
+                      (Falcón, Placetas, Villa Clara)
+                    </>
+                  ) : (
+                    <span style={{ color: 'var(--text-soft)' }}>{item.text}</span>
+                  )}
+                </li>
+              );
+            })}
           </ul>
 
           {/* Horario */}

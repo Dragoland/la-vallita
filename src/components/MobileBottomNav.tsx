@@ -34,10 +34,11 @@ export const MobileBottomNav: React.FC = () => {
 
   return (
     <nav
-      className="lg:hidden fixed bottom-0 left-0 right-0 z-[999] bg-white border-t flex justify-around items-center h-16"
+      className="lg:hidden fixed bottom-0 left-0 right-0 z-[999] flex justify-around items-center h-16"
       style={{
-        borderColor: 'rgba(139,105,20,0.1)',
-        boxShadow: '0 -4px 20px rgba(44,36,22,0.06)',
+        background: 'var(--bg-card)',
+        borderTop: '1px solid var(--border-color)',
+        boxShadow: '0 -4px 20px var(--shadow)',
       }}
     >
       {items.map((item) => {

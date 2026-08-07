@@ -56,7 +56,7 @@ const Historia: React.FC = () => {
   }, []);
 
   return (
-    <section id="historia" ref={sectionRef} className="relative" style={{ background: 'var(--parchment)', padding: '6rem 1.5rem' }}>
+    <section id="historia" ref={sectionRef} className="relative" style={{ background: 'var(--bg-secondary)', padding: '6rem 1.5rem' }}>
       <div className="absolute top-0 left-0 right-0 h-px" style={{ background: 'linear-gradient(90deg, transparent, var(--wheat), transparent)', opacity: 0.3 }} />
       <div className="max-w-[1200px] mx-auto">
         <SectionHeader label="Nuestra Raíz" title="Historia" subtitle="De la visión de Emilio al legado que hoy retomamos" />
@@ -85,13 +85,13 @@ const Historia: React.FC = () => {
               <div className="absolute left-0 top-0 bottom-0 w-0.5 rounded" style={{ background: 'linear-gradient(180deg, var(--wheat), var(--leaf))' }} />
               {timelineItems.map((item, i) => (
                 <div key={i} className="timeline-item relative mb-8 pl-6">
-                  <div className="absolute -left-8 top-1.5 w-3 h-3 rounded-full" style={{ background: 'var(--wheat)', border: '3px solid var(--parchment)', boxShadow: '0 0 0 2px var(--wheat)' }} />
+                  <div className="absolute -left-8 top-1.5 w-3 h-3 rounded-full" style={{ background: 'var(--wheat)', border: '3px solid var(--bg-secondary)', boxShadow: '0 0 0 2px var(--wheat)' }} />
                   <strong className="block font-serif text-lg mb-1" style={{ color: 'var(--soil-dark)' }}>{item.title}</strong>
                   <p className="text-sm leading-relaxed" style={{ color: 'var(--text-soft)' }}>{item.text}</p>
                 </div>
               ))}
             </div>
-            <div className="relative rounded-r-xl p-6 lg:p-8 my-8" style={{ background: 'var(--white)', borderLeft: '4px solid var(--wheat)', boxShadow: '0 4px 20px var(--shadow)' }}>
+            <div className="relative rounded-r-xl p-6 lg:p-8 my-8" style={{ background: 'var(--bg-card)', borderLeft: '4px solid var(--wheat)', boxShadow: '0 4px 20px var(--shadow)' }}>
               <div className="absolute -top-3 left-6 w-12 h-12 rounded-full" style={{ background: 'var(--wheat)', opacity: 0.12 }} />
               <strong className="block font-serif text-xl font-bold mb-3" style={{ color: 'var(--soil-dark)' }}>Emilio Chávez Estévez</strong>
               <p className="text-sm leading-relaxed" style={{ color: 'var(--text-soft)' }}>
