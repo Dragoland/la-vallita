@@ -20,9 +20,9 @@ const contactos = [
   },
   {
     icon: Wrench,
-    title: 'ArregloLinuxero',
+    title: 'Dragoland',
     desc: 'Soporte web y técnico',
-    link: 'https://wa.me/5356418463?text=Hola%20ArregloLinuxero%2C%20tengo%20una%20duda%20sobre%20el%20sitio%20de%20La%20Vallita.',
+    link: 'https://wa.me/5356418463?text=Hola%20Dragoland%2C%20tengo%20una%20duda%20sobre%20el%20sitio%20de%20La%20Vallita.',
     label: '+53 5 6418463',
   },
   {
