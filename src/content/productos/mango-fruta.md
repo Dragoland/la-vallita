@@ -2,7 +2,7 @@
 nombre: Mango (fruta)
 slug: mango-fruta
 cientifico: Mangifera indica
-estado: disponible
+estado: no_disponible
 precio_cup: 100
 precio_mlc: 1.00
 unidad: unidad
