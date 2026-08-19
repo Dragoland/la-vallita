@@ -9,7 +9,6 @@ unidad: planta
 categoria: frutal
 tags: [injerto, frutal, tropical, super-hayden, mango]
 variedades: [Super Hayden]
-stock: 15
 especial: false
 imagen: /images/mango-planta.jpg
 ---
